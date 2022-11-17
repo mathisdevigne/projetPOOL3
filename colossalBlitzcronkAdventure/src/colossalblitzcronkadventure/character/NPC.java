@@ -15,8 +15,8 @@ public class NPC extends Character{
     }
 
     @Override
-    public String print() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void print() {
+        System.out.println(this.getName());
     }
     
 }

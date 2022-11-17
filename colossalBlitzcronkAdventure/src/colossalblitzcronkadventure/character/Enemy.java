@@ -13,12 +13,10 @@ public class Enemy extends CombatableCharacter{
     public Enemy(String NAME, int MAX_PV, int STRENGTH) {
         super(NAME, MAX_PV, STRENGTH);
     }
-    
-    
 
     @Override
-    public String print() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void print() {
+        System.out.println(this.getName() + ": " + this.getPv() + "/" + this.getMAX_PV());
     }
     
 }

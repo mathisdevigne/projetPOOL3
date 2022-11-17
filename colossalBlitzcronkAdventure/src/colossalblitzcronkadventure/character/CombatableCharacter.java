@@ -19,6 +19,20 @@ public abstract class CombatableCharacter extends Character {
         this.pv = this.MAX_PV;
         this.STRENGTH = STRENGTH;
     }
+
+    public int getMAX_PV() {
+        return MAX_PV;
+    }
+
+    public int getPv() {
+        return pv;
+    }
+
+    public int getSTRENGTH() {
+        return STRENGTH;
+    }
+    
+    
     
     
 }

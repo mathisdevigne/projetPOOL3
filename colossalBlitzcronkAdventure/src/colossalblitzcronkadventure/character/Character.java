@@ -14,6 +14,12 @@ public abstract class Character {
     public Character(String NAME){
         this.NAME = NAME;
     }
+
+    public abstract void print();
     
-    public abstract String print();
+    public String getName(){
+        return this.NAME;
+    }
+    
+
 }

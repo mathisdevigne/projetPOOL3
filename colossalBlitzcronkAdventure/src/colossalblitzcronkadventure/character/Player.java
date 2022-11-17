@@ -11,17 +11,21 @@ package colossalblitzcronkadventure.character;
 public class Player extends CombatableCharacter{
     private static final int DEF_INT = 0;
     private int intelligence;
+    
+    private static final Player BLITZCRONK = new Player("Blitzcrong", 20, 10);
 
-    public Player(String NAME, int MAX_PV, int STRENGTH) {
+    private Player(String NAME, int MAX_PV, int STRENGTH) {
         super(NAME, MAX_PV, STRENGTH);
         this.intelligence = DEF_INT;
     }
-    
+
+    public static Player getPlayer(){
+        return Player.BLITZCRONK;
+    }
 
     @Override
-    public String print() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void print() {
+        System.out.println(this.getName() + ": " + this.getPv() + "/" + this.getMAX_PV() + " Int : " + this.intelligence + " Str : " + this.getSTRENGTH());
     }
-    
-    
+
 }
