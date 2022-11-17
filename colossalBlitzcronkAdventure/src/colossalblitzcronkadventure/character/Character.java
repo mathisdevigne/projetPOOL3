@@ -2,16 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package colossalblitzcronkadventure;
+package colossalblitzcronkadventure.character;
 
 /**
  *
- * @author mathi
+ * @author theodusehu
  */
-public abstract class  Map {
-    private String nom;
+public class Character {
     
-    public Map(String nom){
-        this.nom = nom;
-    }
 }
