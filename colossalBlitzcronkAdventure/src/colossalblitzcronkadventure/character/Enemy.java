@@ -8,10 +8,17 @@ package colossalblitzcronkadventure.character;
  *
  * @author theodusehu
  */
-public class Enemy extends Character{
+public class Enemy extends CombatableCharacter{
+
+    public Enemy(String NAME, int MAX_PV, int STRENGTH) {
+        super(NAME, MAX_PV, STRENGTH);
+    }
     
-    public Enemy(String NAME) {
-        super(NAME);
+    
+
+    @Override
+    public String print() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

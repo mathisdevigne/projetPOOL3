@@ -15,4 +15,5 @@ public abstract class Character {
         this.NAME = NAME;
     }
     
+    public abstract String print();
 }

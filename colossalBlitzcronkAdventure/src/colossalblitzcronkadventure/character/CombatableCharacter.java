@@ -20,4 +20,5 @@ public abstract class CombatableCharacter extends Character {
         this.STRENGTH = STRENGTH;
     }
     
+    
 }

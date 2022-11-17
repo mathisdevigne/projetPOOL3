@@ -13,5 +13,10 @@ public class NPC extends Character{
     public NPC(String NAME) {
         super(NAME);
     }
+
+    @Override
+    public String print() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
