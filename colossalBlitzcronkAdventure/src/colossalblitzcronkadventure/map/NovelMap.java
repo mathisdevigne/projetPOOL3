@@ -4,10 +4,20 @@
  */
 package colossalblitzcronkadventure.map;
 
+import colossalblitzcronkadventure.character.NPC;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author mathi
  */
-public class NovelMap {
+public class NovelMap extends Map {
+    private List<NPC> characters;
+    
+    public NovelMap(String nom, MapID mapid, String description){
+        super(nom, mapid, description);
+        this.characters = new ArrayList<>();
+    }
     
 }

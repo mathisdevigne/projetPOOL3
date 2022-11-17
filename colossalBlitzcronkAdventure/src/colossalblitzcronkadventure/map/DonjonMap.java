@@ -4,10 +4,18 @@
  */
 package colossalblitzcronkadventure.map;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author mathi
  */
-public class DonjonMap {
+public class DonjonMap extends Map {
+    private List<Character> characters;
     
+    public DonjonMap(String nom, MapID mapid, String description){
+        super(nom, mapid, description);
+        this.characters = new ArrayList<>();
+    }
 }
