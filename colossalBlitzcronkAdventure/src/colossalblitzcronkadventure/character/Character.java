@@ -8,6 +8,11 @@ package colossalblitzcronkadventure.character;
  *
  * @author theodusehu
  */
-public class Character {
+public abstract class Character {
+    private final String NAME;
+    
+    public Character(String NAME){
+        this.NAME = NAME;
+    }
     
 }
