@@ -10,4 +10,8 @@ package colossalblitzcronkadventure.character;
  */
 public class Enemy extends Character{
     
+    public Enemy(String NAME) {
+        super(NAME);
+    }
+    
 }

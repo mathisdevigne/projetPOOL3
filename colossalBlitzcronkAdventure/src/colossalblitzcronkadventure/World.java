@@ -5,6 +5,7 @@
 package colossalblitzcronkadventure;
 
 import colossalblitzcronkadventure.map.DonjonMap;
+import colossalblitzcronkadventure.map.NovelMap;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
 public class World {
     private static final World WORLD = new World();
     private List<DonjonMap> donjonMaps;
-    private List<NovelMap> donjonMaps;
+    private List<NovelMap> NovelMaps;
     private World(){
         
     }

@@ -8,13 +8,16 @@ package colossalblitzcronkadventure.character;
  *
  * @author theodusehu
  */
-public class Player extends Character{
-    private static final int DEF_INT = 0;
-    private int intelligence;
-    
-    public Player(String NAME) {
+public abstract class CombatableCharacter extends Character {
+    private final int MAX_PV;
+    private int pv;
+    private final int STRENGTH;
+
+    public CombatableCharacter(String NAME, int MAX_PV, int STRENGTH) {
         super(NAME);
-        this.intelligence = DEF_INT;
+        this.MAX_PV = MAX_PV;
+        this.pv = this.MAX_PV;
+        this.STRENGTH = STRENGTH;
     }
     
 }

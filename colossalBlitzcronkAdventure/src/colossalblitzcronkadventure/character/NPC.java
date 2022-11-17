@@ -10,4 +10,8 @@ package colossalblitzcronkadventure.character;
  */
 public class NPC extends Character{
     
+    public NPC(String NAME) {
+        super(NAME);
+    }
+    
 }
