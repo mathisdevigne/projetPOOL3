@@ -25,6 +25,13 @@ public class ColossalBlitzcronkAdventure {
         blitz.print();
         boop.print();
         blip.print();
+        
+        blitz.takeDamage(21);
+        boop.takeDamage(20);
+        
+        blitz.print();
+        boop.print();
+
     }
     
 }

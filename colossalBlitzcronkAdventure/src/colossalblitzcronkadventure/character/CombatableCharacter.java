@@ -32,7 +32,13 @@ public abstract class CombatableCharacter extends Character {
         return STRENGTH;
     }
     
-    
-    
-    
+    public void takeDamage(int damage){
+        if(this.pv > 0){
+            this.pv -= damage;
+        }
+        
+        if(this.pv < 0){
+            this.pv = 0;
+        }
+    }
 }
