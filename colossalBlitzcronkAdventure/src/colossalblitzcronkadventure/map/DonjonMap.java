@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author mathi
  */
-public class DonjonMap extends Map {
+public class DonjonMap extends Location {
     private List<Character> characters;
     
     public DonjonMap(String nom, MapID mapid, String description){

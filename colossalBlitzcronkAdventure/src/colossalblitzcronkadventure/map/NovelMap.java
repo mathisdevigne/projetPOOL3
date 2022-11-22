@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author mathi
  */
-public class NovelMap extends Map {
+public class NovelMap extends Location {
     private List<NPC> characters;
     
     public NovelMap(String nom, MapID mapid, String description){
@@ -20,4 +20,14 @@ public class NovelMap extends Map {
         this.characters = new ArrayList<>();
     }
     
+    @Override
+    public void print(){
+        super.print();
+        if(!this.characters.isEmpty())
+        {
+            for(NPC npc : this.characters){
+                System.out.print(npc);
+            }
+        }
+    }
 }
