@@ -9,73 +9,92 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  *
  * @author mathi
  */
 public class  Location {
-    private final String NOM;
     private final String DESCRIPTION;
     private final MapID ID;
-    private final Map<String, Location> EXITS;
-    private List<Person> characters;
+    private final Map<MapID, Location> EXITS;
+    private List<Person> persons;
 
     
     
-    public Location(String nom, MapID mapid, String description){
-        this.NOM = nom;
+    public Location(MapID mapid, String description){
         this.DESCRIPTION = description;
         this.EXITS = new HashMap<>();
         this.ID = mapid;
-        this.characters = new ArrayList<>();
+        this.persons = new ArrayList<>();
 
     }
     
     public void addExits(Location newExit){
         if(newExit != this){
-            this.EXITS.put(newExit.getNOM(), newExit);
+            this.EXITS.put(newExit.getID(), newExit);
         }
     }
+    
+    public void addPerson(Person p){
+        this.persons.add(p);
+    }
 
-    public String getNOM() {
-        return NOM;
+    public MapID getID() {
+        return ID;
+    }
+
+    public String getNom() {
+        return ID.name;
     }
     
     public void print(){
         System.out.println(this.DESCRIPTION);
         
         System.out.println("Exits :");
-        for(String name : this.EXITS.keySet()){
-            System.out.print(" - " + name);
+        for(MapID map : this.EXITS.keySet()){
+            System.out.print(" - " + map.name);
         }
-        if(!this.characters.isEmpty())
+        if(!this.persons.isEmpty())
         {
-            for(Person npc : this.characters){
+            for(Person npc : this.persons){
                 System.out.print(npc);
             }
         }
     }
 
-    public Map<String, Location> getEXITS() {
+    public Map<MapID, Location> getEXITS() {
         return EXITS;
     }
-    
+
     @Override
-    public boolean equals(Object o){
-        boolean verif = true;
-        Location l = (Location)o;
-        if(!this.NOM.equals(l.getNOM()) || this.ID != l.getID() || !this.DESCRIPTION.equalsIgnoreCase(l.getDESCRIPTION())){
-            verif = false;
-        }
-        return verif; 
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + Objects.hashCode(this.ID);
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Location other = (Location) obj;
+        return this.ID == other.ID;
+    }
+    
+    
+    
+    
 
     public String getDESCRIPTION() {
         return DESCRIPTION;
-    }
-
-    public MapID getID() {
-        return ID;
     }
 }

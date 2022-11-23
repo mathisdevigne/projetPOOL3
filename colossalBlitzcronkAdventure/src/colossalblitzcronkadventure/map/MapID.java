@@ -9,10 +9,17 @@ package colossalblitzcronkadventure.map;
  * @author mathi
  */
 public enum MapID {
-    DUMP,
-    FACTORY,
-    SEWER,
-    DEPTH,
-    ENTRESOL,
-    FACETOVER
+    DUMP("Dump"),
+    FACTORY("Factory"),
+    SEWER("Sewer"),
+    DEPTH("Depth"),
+    ENTRESOL("Entresol"),
+    FACETOVER("Facetover");
+    
+    
+    public String name;
+    
+    private MapID(String name){
+        this.name = name;
+    }
 }

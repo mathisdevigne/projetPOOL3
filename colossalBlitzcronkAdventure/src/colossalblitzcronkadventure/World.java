@@ -19,7 +19,7 @@ public class World {
     private Location currentLocation;
     
     private World(){
-        
+        this.locations = new ArrayList<>();
     }
     
     public static World get(){
@@ -27,9 +27,8 @@ public class World {
     }
     
     public void initMapTest(){
-        this.locations = new ArrayList<>();
         for(int i = 0; i < 5; i++){
-            this.locations.add(new Location("Salle"+(i+1), MapID.FACETOVER, "Ceci est la Salle "+(1+i)));
+            this.locations.add(new Location(MapID.FACETOVER, "Ceci est la Salle "+(1+i)));
         }
         for(Location n : this.locations){
             n.addExits(this.locations.get(2));
@@ -39,9 +38,6 @@ public class World {
     }
     
     public void goTo(String name){
-        if(this.currentLocation.getEXITS().containsKey(name)){
-            this.currentLocation = this.currentLocation.getEXITS().get(name);
-        }
     }
     
     public void print(){
