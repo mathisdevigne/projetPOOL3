@@ -4,8 +4,9 @@
  */
 package colossalblitzcronkadventure;
 
-import colossalblitzcronkadventure.map.DonjonMap;
-import colossalblitzcronkadventure.map.NovelMap;
+import colossalblitzcronkadventure.map.Location;
+import colossalblitzcronkadventure.map.MapID;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,13 +15,36 @@ import java.util.List;
  */
 public class World {
     private static final World WORLD = new World();
-    private List<DonjonMap> donjonMaps;
-    private List<NovelMap> NovelMaps;
+    private List<Location> locations;
+    private Location currentLocation;
+    
     private World(){
         
     }
     
     public static World get(){
         return World.WORLD;
+    }
+    
+    public void initMapTest(){
+        this.locations = new ArrayList<>();
+        for(int i = 0; i < 5; i++){
+            this.locations.add(new Location("Salle"+(i+1), MapID.FACETOVER, "Ceci est la Salle "+(1+i)));
+        }
+        for(Location n : this.locations){
+            n.addExits(this.locations.get(2));
+        }
+        
+        this.currentLocation = this.locations.get(0);
+    }
+    
+    public void goTo(String name){
+        if(this.currentLocation.getEXITS().containsKey(name)){
+            this.currentLocation = this.currentLocation.getEXITS().get(name);
+        }
+    }
+    
+    public void print(){
+        this.currentLocation.print();
     }
 }

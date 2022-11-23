@@ -31,7 +31,6 @@ public class ColossalBlitzcronkAdventure {
         
         blitz.print();
         boop.print();
-
     }
     
 }
