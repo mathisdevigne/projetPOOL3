@@ -8,7 +8,7 @@ package colossalblitzcronkadventure.character;
  *
  * @author theodusehu
  */
-public class NPC extends Character{
+public class NPC extends Person{
     
     public NPC(String NAME) {
         super(NAME);
