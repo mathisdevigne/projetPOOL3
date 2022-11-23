@@ -8,7 +8,7 @@ package colossalblitzcronkadventure.character;
  *
  * @author theodusehu
  */
-public abstract class CombatableCharacter extends Character {
+public abstract class CombatableCharacter extends Person {
     private final int MAX_PV;
     private int pv;
     private final int STRENGTH;

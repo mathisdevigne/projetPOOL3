@@ -4,18 +4,23 @@
  */
 package colossalblitzcronkadventure.map;
 
+import colossalblitzcronkadventure.character.Person;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  *
  * @author mathi
  */
-public abstract class  Location {
+public class  Location {
     private final String NOM;
     private final String DESCRIPTION;
     private final MapID ID;
     private final Map<String, Location> EXITS;
+    private List<Person> characters;
+
     
     
     public Location(String nom, MapID mapid, String description){
@@ -23,6 +28,8 @@ public abstract class  Location {
         this.DESCRIPTION = description;
         this.EXITS = new HashMap<>();
         this.ID = mapid;
+        this.characters = new ArrayList<>();
+
     }
     
     public void addExits(Location newExit){
@@ -41,6 +48,12 @@ public abstract class  Location {
         System.out.println("Exits :");
         for(String name : this.EXITS.keySet()){
             System.out.print(" - " + name);
+        }
+        if(!this.characters.isEmpty())
+        {
+            for(Person npc : this.characters){
+                System.out.print(npc);
+            }
         }
     }
 

@@ -8,7 +8,7 @@ package colossalblitzcronkadventure.character;
  *
  * @author theodusehu
  */
-public class Player extends Character{
+public class Player extends Person{
     private static final int DEF_INT = 0;
     private int intelligence;
     
