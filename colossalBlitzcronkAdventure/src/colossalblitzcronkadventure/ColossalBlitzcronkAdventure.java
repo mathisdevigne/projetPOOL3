@@ -4,6 +4,7 @@
  */
 package colossalblitzcronkadventure;
 
+
 /**
  *
  * @author mathi
@@ -14,7 +15,7 @@ public class ColossalBlitzcronkAdventure {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
     }
     
 }

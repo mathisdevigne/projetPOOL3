@@ -11,21 +11,21 @@ import java.util.List;
  *
  * @author mathi
  */
-public abstract class  Map {
+public abstract class  Location {
     private final String NOM;
     private final String DESCRIPTION;
     private final MapID ID;
-    private final List<Map> EXITS;
+    private final List<Location> EXITS;
     
     
-    public Map(String nom, MapID mapid, String description){
+    public Location(String nom, MapID mapid, String description){
         this.NOM = nom;
         this.DESCRIPTION = description;
         this.EXITS = new ArrayList<>();
         this.ID = mapid;
     }
     
-    public void addExits(Map newExit){
+    public void addExits(Location newExit){
         this.EXITS.add(newExit);
     }
     

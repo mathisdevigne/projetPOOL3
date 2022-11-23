@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author mathi
  */
-public class NovelMap extends Map {
+public class NovelMap extends Location {
     private List<NPC> characters;
     
     public NovelMap(String nom, MapID mapid, String description){

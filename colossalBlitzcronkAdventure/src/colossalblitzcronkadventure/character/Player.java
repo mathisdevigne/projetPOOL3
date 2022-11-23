@@ -9,12 +9,17 @@ package colossalblitzcronkadventure.character;
  * @author theodusehu
  */
 public class Player extends Character{
+    private static final Player BLITZCRONK = new Player("Blitzcronk");
     private static final int DEF_INT = 0;
     private int intelligence;
     
-    public Player(String NAME) {
+    private Player(String NAME) {
         super(NAME);
         this.intelligence = DEF_INT;
+    }
+
+    public static Player getPlayer() {
+        return BLITZCRONK;
     }
     
 }
