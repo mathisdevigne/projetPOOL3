@@ -8,10 +8,15 @@ package colossalblitzcronkadventure.character;
  *
  * @author theodusehu
  */
-public class Enemy extends Character{
-    
-    public Enemy(String NAME) {
-        super(NAME);
+public class Enemy extends CombatableCharacter{
+
+    public Enemy(String NAME, int MAX_PV, int STRENGTH) {
+        super(NAME, MAX_PV, STRENGTH);
+    }
+
+    @Override
+    public void print() {
+        System.out.println(this.getName() + ": " + this.getPv() + "/" + this.getMAX_PV());
     }
     
 }

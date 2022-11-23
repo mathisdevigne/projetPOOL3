@@ -13,5 +13,10 @@ public class NPC extends Character{
     public NPC(String NAME) {
         super(NAME);
     }
+
+    @Override
+    public void print() {
+        System.out.println(this.getName());
+    }
     
 }
