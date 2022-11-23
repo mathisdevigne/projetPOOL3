@@ -22,6 +22,10 @@ public class Player extends CombatableCharacter{
     public static Player getPlayer(){
         return Player.BLITZCRONK;
     }
+    
+    public void upIntelligence(int val){
+        this.intelligence =+ val;
+    }
 
     @Override
     public void print() {
