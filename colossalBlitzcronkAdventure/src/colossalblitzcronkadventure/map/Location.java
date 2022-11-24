@@ -18,7 +18,7 @@ import java.util.Objects;
 public class  Location {
     private final String DESCRIPTION;
     private final MapID ID;
-    private final Map<MapID, Location> EXITS;
+    private final Map<MapID, Exit> EXITS;
     private List<Person> persons;
 
     
@@ -31,9 +31,9 @@ public class  Location {
 
     }
     
-    public void addExits(Location newExit){
-        if(newExit != this){
-            this.EXITS.put(newExit.getID(), newExit);
+    public void addExits(Exit newExit){
+        if(newExit.isOrigin(this)){
+            this.EXITS.put(newExit.getDestinationID(), newExit);
         }
     }
     
@@ -50,11 +50,11 @@ public class  Location {
     }
     
     public void print(){
-        System.out.println(this.DESCRIPTION);
+        System.out.println(this.ID + "\n" +this.DESCRIPTION);
         
         System.out.println("Exits :");
         for(MapID map : this.EXITS.keySet()){
-            System.out.print(" - " + map.name);
+            System.out.println(" - " + map.name);
         }
         if(!this.persons.isEmpty())
         {
@@ -64,8 +64,12 @@ public class  Location {
         }
     }
 
-    public Map<MapID, Location> getEXITS() {
-        return EXITS;
+    public boolean isExit(MapID s){
+        return this.EXITS.containsKey(s);
+    }
+    
+    public Location getExit(MapID s){
+        return this.EXITS.get(s).getDestination();
     }
 
     @Override
@@ -88,11 +92,7 @@ public class  Location {
         }
         final Location other = (Location) obj;
         return this.ID == other.ID;
-    }
-    
-    
-    
-    
+    } 
 
     public String getDESCRIPTION() {
         return DESCRIPTION;

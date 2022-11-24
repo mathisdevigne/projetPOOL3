@@ -4,9 +4,6 @@
  */
 package colossalblitzcronkadventure;
 
-import colossalblitzcronkadventure.character.Enemy;
-import colossalblitzcronkadventure.character.NPC;
-import colossalblitzcronkadventure.character.Player;
 
 /**
  *
@@ -18,19 +15,8 @@ public class ColossalBlitzcronkAdventure {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Player blitz = Player.getPlayer();
-        Enemy boop = new Enemy("Boop", 10, 10);
-        NPC blip = new NPC("Blip");
-        
-        blitz.print();
-        boop.print();
-        blip.print();
-        
-        blitz.takeDamage(21);
-        boop.takeDamage(20);
-        
-        blitz.print();
-        boop.print();
+        Game g = new Game();
+        g.play();
     }
     
 }
