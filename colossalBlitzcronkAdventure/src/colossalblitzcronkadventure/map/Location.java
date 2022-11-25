@@ -15,30 +15,28 @@ import java.util.Objects;
  *
  * @author mathi
  */
-public class  Location {
+public class Location {
     private final String DESCRIPTION;
     private final MapID ID;
     private final Map<MapID, Exit> EXITS;
-    private List<Person> persons;
-
-    
+    private final List<Person> PERSONS;
     
     public Location(MapID mapid, String description){
         this.DESCRIPTION = description;
         this.EXITS = new HashMap<>();
         this.ID = mapid;
-        this.persons = new ArrayList<>();
+        this.PERSONS = new ArrayList<>();
 
     }
     
     public void addExits(Exit newExit){
-        if(newExit.isOrigin(this)){
-            this.EXITS.put(newExit.getDestinationID(), newExit);
+        if(newExit.isOrigin(this.ID)){
+            this.EXITS.put(newExit.getDESTINATION(), newExit);
         }
     }
     
     public void addPerson(Person p){
-        this.persons.add(p);
+        this.PERSONS.add(p);
     }
 
     public MapID getID() {
@@ -56,9 +54,9 @@ public class  Location {
         for(MapID map : this.EXITS.keySet()){
             System.out.println(" - " + map.name);
         }
-        if(!this.persons.isEmpty())
+        if(!this.PERSONS.isEmpty())
         {
-            for(Person npc : this.persons){
+            for(Person npc : this.PERSONS){
                 System.out.print(npc);
             }
         }
@@ -68,8 +66,8 @@ public class  Location {
         return this.EXITS.containsKey(s);
     }
     
-    public Location getExit(MapID s){
-        return this.EXITS.get(s).getDestination();
+    public MapID getExit(MapID s){
+        return this.EXITS.get(s).getDESTINATION();
     }
 
     @Override

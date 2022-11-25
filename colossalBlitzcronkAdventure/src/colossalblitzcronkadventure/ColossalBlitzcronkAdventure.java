@@ -4,6 +4,7 @@
  */
 package colossalblitzcronkadventure;
 
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -13,8 +14,9 @@ public class ColossalBlitzcronkAdventure {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Game g = new Game();
         g.play();
     }

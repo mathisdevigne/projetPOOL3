@@ -21,11 +21,11 @@ import java.util.Scanner;
  */
 public class World {
     private static final World WORLD = new World();
-    private List<Location> locations;
+    private final List<Location> LOCATIONS;
     private Location currentLocation;
     
     private World(){
-        this.locations = new ArrayList<>();
+        this.LOCATIONS = new ArrayList<>();
         
     }
     
@@ -33,10 +33,9 @@ public class World {
         return World.WORLD;
     }
     
-    public void initMapTest() throws FileNotFoundException{
-        File f = new File(System.getProperty("user.dir") + "/src/colossalBlitzcronkAdventure/map/map.txt");        
-        Scanner input = new Scanner(f);
-        Map<MapID, List<MapID>> exits = new HashMap<>();
+    public void initMapTest() throws FileNotFoundException{        
+        File file = new File(System.getProperty("user.dir") + "/src/colossalBlitzcronkAdventure/map/map.txt");
+        Scanner input = new Scanner(file);
         while(input.hasNext()){
             MapID id = MapID.valueOf(input.next());
             String desc = "";
@@ -46,34 +45,20 @@ public class World {
                 s = input.next();
             }
             Location l = new Location(id, desc);
-            exits.put(id, new ArrayList<>());
             String exit = input.next();
             while(!exit.equals("@")){
-                exits.get(id).add(MapID.valueOf(exit));
+                l.addExits(new Exit(l.getID(), MapID.valueOf(exit)));
                 exit = input.next();
             }
-            this.locations.add(l);
+            this.LOCATIONS.add(l);
         }
         input.close();
-        for(Location n : this.locations){
-            for(MapID id : exits.get(n.getID())){
-                n.addExits(new Exit(n, this.getLocation(id)));
-            }
-        }
         
-        
-        /*for(int i = 0; i < 5; i++){
-            this.locations.add(new Location(MapID.values()[i], "Ceci est la Salle "+(1+i)));
-        }
-        for(Location n : this.locations){
-            n.addExits(new Exit(n, this.locations.get(2)));
-        }*/
-        
-        this.currentLocation = this.locations.get(0);
+        this.currentLocation = this.LOCATIONS.get(0);
     }
     
     public Location getLocation(MapID id){
-        for(Location l : this.locations){
+        for(Location l : this.LOCATIONS){
             if(l.getID() == id){
                 return l;
             }
@@ -83,7 +68,10 @@ public class World {
     
     public void goTo(MapID name){
         if(this.currentLocation.isExit(name)){
-            this.currentLocation = this.currentLocation.getExit(name);
+            MapID l = this.currentLocation.getExit(name);
+            if(l != null){
+                this.currentLocation = this.getLocation(l);
+            }
         }
     }
     

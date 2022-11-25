@@ -9,27 +9,23 @@ package colossalblitzcronkadventure.map;
  * @author Louis Richard
  */
 public class Exit {
-    private Location origin;
-    private Location destination;
+    private final MapID ORIGIN;
+    private final MapID DESTINATION;
 
-    public Location getDestination() {
-        return destination;
+    public Exit(MapID o, MapID d){
+        this.DESTINATION = d;
+        this.ORIGIN = o;
     }
     
-    public Exit(Location o, Location d){
-        this.destination = d;
-        this.origin = o;
+    public MapID getDESTINATION() {
+        return this.DESTINATION;
     }
     
-    public boolean isOrigin(Location l){
-        return this.origin == l;
+    public boolean isOrigin(MapID id){
+        return this.ORIGIN == id;
     }
     
-    public MapID getOriginID(){
-        return this.origin.getID();
-    }
-    
-    public MapID getDestinationID(){
-        return this.destination.getID();
+    public MapID getORIGIN(){
+        return this.ORIGIN;
     }
 }
