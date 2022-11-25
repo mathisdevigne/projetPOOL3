@@ -1,2 +1,8 @@
-0 Bonjour je suis un pnj @
-1 Test @
+0 Dialogues Player @
+1 Dialogues NPC @
+2 @
+3 @
+4 @
+5 @
+6 @
+7 @

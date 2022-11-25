@@ -8,30 +8,52 @@ package colossalblitzcronkadventure.character;
  *
  * @author theodusehu
  */
-public abstract class CombatableCharacter extends Person {
+public abstract class FighterCharacter extends Person {
     private final int MAX_PV;
     private int pv;
     private final int STRENGTH;
 
-    public CombatableCharacter(String NAME, int MAX_PV, int STRENGTH) {
+    /** Constructor of object FighterCharacter
+     * 
+     * @param NAME Name
+     * @param MAX_PV Maximum number of PV
+     * @param STRENGTH Strength (Attack)
+     */
+    public FighterCharacter(String NAME, int MAX_PV, int STRENGTH) {
         super(NAME);
         this.MAX_PV = MAX_PV;
         this.pv = this.MAX_PV;
         this.STRENGTH = STRENGTH;
     }
 
+    /** Getter of Maximum number of PV
+     * 
+     * @return MAX_PV
+     */
     public int getMAX_PV() {
         return MAX_PV;
     }
 
+    /** Getter of actual number of PV
+     * 
+     * @return pv
+     */
     public int getPv() {
         return pv;
     }
 
+    /** Getter of the Strength
+     * 
+     * @return STRENGTH
+     */
     public int getSTRENGTH() {
         return STRENGTH;
     }
     
+    /** Can reduce PV by given value
+     * 
+     * @param damage Val to substract to pv
+     */
     public void takeDamage(int damage){
         if(this.pv > 0){
             this.pv -= damage;

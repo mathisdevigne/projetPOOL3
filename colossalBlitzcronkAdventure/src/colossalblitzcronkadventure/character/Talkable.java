@@ -10,7 +10,7 @@ package colossalblitzcronkadventure.character;
  */
 public interface Talkable {
     
-    /**
+    /** Allow to talk using the DIALOGUES Map from the Person class
      *
      * @param id
      *

@@ -33,7 +33,8 @@ public class ColossalBlitzcronkAdventure {
         blitz.print();
         boop.print();
         
-        blip.talkId(0);
+        blip.talkId(1);
+        blitz.talkId(0);
     }
     
 }
