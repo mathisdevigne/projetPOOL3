@@ -8,6 +8,7 @@ import colossalblitzcronkadventure.character.Enemy;
 import colossalblitzcronkadventure.character.NPC;
 import colossalblitzcronkadventure.character.Player;
 
+
 /**
  *
  * @author mathi
@@ -31,6 +32,8 @@ public class ColossalBlitzcronkAdventure {
         
         blitz.print();
         boop.print();
+        
+        blip.talkId(0);
     }
     
 }

@@ -31,5 +31,4 @@ public class Player extends CombatableCharacter{
     public void print() {
         System.out.println(this.getName() + ": " + this.getPv() + "/" + this.getMAX_PV() + " Int : " + this.intelligence + " Str : " + this.getSTRENGTH());
     }
-
 }
