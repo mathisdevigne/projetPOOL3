@@ -21,6 +21,11 @@ public class Location {
     private final Map<MapID, Exit> EXITS;
     private final List<Person> PERSONS;
     
+    /**
+     * Constructor of the Location class
+     * @param mapid the id of the location
+     * @param description the description of the location
+     */
     public Location(MapID mapid, String description){
         this.DESCRIPTION = description;
         this.EXITS = new HashMap<>();
@@ -29,24 +34,59 @@ public class Location {
 
     }
     
+    /**
+     * Add an Exit to the the list of Exit in the Location
+     * @param newExit the new exit to add int the list
+     */
     public void addExits(Exit newExit){
         if(newExit.isOrigin(this.ID)){
             this.EXITS.put(newExit.getDESTINATION(), newExit);
         }
     }
     
-    public void addPerson(Person p){
-        this.PERSONS.add(p);
+    /**
+     * Add a Person to the list of Person in the Location 
+     * @param person the new person to add in the list
+     */
+    public void addPerson(Person person){
+        this.PERSONS.add(person);
     }
 
+    /**
+     * Return the ID of the Location
+     * @return a MapID of the MapID enum
+     */
     public MapID getID() {
         return ID;
     }
 
-    public String getNom() {
+    /**
+     * Return the name associated to the ID of the Location
+     * @return a String of the MapID enum
+     */
+    public String getName() {
         return ID.name;
     }
     
+    /**
+     * Return the description of the Location
+     * @return a String that is the description
+     */
+    public String getDESCRIPTION() {
+        return DESCRIPTION;
+    }
+
+    /**
+     * Return the list of Person of the Location
+     * @return a list of Person
+     */
+    public List<Person> getPERSONS() {
+        return PERSONS;
+    }
+        
+    /**
+     * Print the inforamtions of the Location
+     */
     public void print(){
         System.out.println(this.ID + "\n" +this.DESCRIPTION);
         
@@ -62,12 +102,22 @@ public class Location {
         }
     }
 
-    public boolean isExit(MapID s){
-        return this.EXITS.containsKey(s);
+    /**
+     * Verify if the parameter given is an Exit
+     * @param id the id of the destination
+     * @return true if this is an exit
+     */
+    public boolean isExit(MapID id){
+        return this.EXITS.containsKey(id);
     }
     
-    public MapID getExit(MapID s){
-        return this.EXITS.get(s).getDESTINATION();
+    /**
+     * Return the Exit associated to the MapID given
+     * @param id the id of the destination 
+     * @return the MapID of the destination
+     */
+    public MapID getExit(MapID id){
+        return this.EXITS.get(id).getDESTINATION();
     }
 
     @Override
@@ -77,6 +127,11 @@ public class Location {
         return hash;
     }
 
+    /**
+     * Verify if an object is equal to the Location
+     * @param obj the Object to test
+     * @return true if this is the same object
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -91,8 +146,4 @@ public class Location {
         final Location other = (Location) obj;
         return this.ID == other.ID;
     } 
-
-    public String getDESCRIPTION() {
-        return DESCRIPTION;
-    }
 }

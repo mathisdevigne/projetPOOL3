@@ -11,14 +11,38 @@ package colossalblitzcronkadventure.map;
 public class LockedExit extends Exit {
     private boolean isLock = true;
     
-    public LockedExit(MapID o, MapID d){
-        super(o,d);
+    /**
+     * Constructor of the LockedExit class
+     * Call the constructor of the super class Exit
+     * @param origin the MapID of the origin
+     * @param destination the MapID of the destination
+     */
+    public LockedExit(MapID origin, MapID destination){
+        super(origin,destination);
     }
     
+    /**
+     * Unlock the Exit 
+     * Set the value of isLock to false
+     */
     public void unLock(){
         this.isLock = false;
     }
     
+    /**
+     * Return the value of isLock
+     * @return true if the Exit is locked
+     */
+    public boolean isLock(){
+        return this.isLock;
+    }
+    
+    /**
+     * Return the destination of the Exit
+     * Verify if the Exit is lock
+     * if false call the super methode 
+     * @return the MapID or null if the Exit is locked
+     */
     @Override
     public MapID getDESTINATION() {
         if(!this.isLock){

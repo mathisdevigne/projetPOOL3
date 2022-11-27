@@ -12,20 +12,38 @@ public class Exit {
     private final MapID ORIGIN;
     private final MapID DESTINATION;
 
-    public Exit(MapID o, MapID d){
-        this.DESTINATION = d;
-        this.ORIGIN = o;
+    /**
+     * Constructor of the class Exit
+     * @param origin the MapID of the origin
+     * @param destination the MapID of the destination
+     */
+    public Exit(MapID origin, MapID destination){
+        this.DESTINATION = destination;
+        this.ORIGIN = origin;
     }
     
+    /**
+     * Return the destination of the Exit
+     * @return the MapID of the destination
+     */
     public MapID getDESTINATION() {
         return this.DESTINATION;
     }
-    
-    public boolean isOrigin(MapID id){
-        return this.ORIGIN == id;
-    }
-    
+           
+    /**
+     * Return the origin of the Exit
+     * @return the MapID of the origin
+     */
     public MapID getORIGIN(){
         return this.ORIGIN;
+    }
+    
+    /**
+     * Verify if a MapID is the origin
+     * @param id a MapID to verify
+     * @return true if the MapID is the one of the origin
+     */
+    public boolean isOrigin(MapID id){
+        return this.ORIGIN == id;
     }
 }
