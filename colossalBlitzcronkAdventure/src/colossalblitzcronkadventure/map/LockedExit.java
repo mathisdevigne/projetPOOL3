@@ -5,7 +5,7 @@
 package colossalblitzcronkadventure.map;
 
 /**
- *
+ * Class that represent a Locked Exit, inherit of Exit
  * @author Louis Richard
  */
 public class LockedExit extends Exit {

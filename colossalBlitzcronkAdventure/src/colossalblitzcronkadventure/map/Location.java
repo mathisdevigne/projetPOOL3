@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- *
+ * Class that represent a Location
  * @author mathi
  */
 public class Location {
@@ -31,7 +31,6 @@ public class Location {
         this.EXITS = new HashMap<>();
         this.ID = mapid;
         this.PERSONS = new ArrayList<>();
-
     }
     
     /**
@@ -75,6 +74,15 @@ public class Location {
     public String getDESCRIPTION() {
         return DESCRIPTION;
     }
+            
+    /**
+     * Return the Exit associated to the MapID given
+     * @param id the id of the destination 
+     * @return the MapID of the destination
+     */
+    public MapID getExit(MapID id){
+        return this.EXITS.get(id).getDESTINATION();
+    }
 
     /**
      * Return the list of Person of the Location
@@ -109,15 +117,6 @@ public class Location {
      */
     public boolean isExit(MapID id){
         return this.EXITS.containsKey(id);
-    }
-    
-    /**
-     * Return the Exit associated to the MapID given
-     * @param id the id of the destination 
-     * @return the MapID of the destination
-     */
-    public MapID getExit(MapID id){
-        return this.EXITS.get(id).getDESTINATION();
     }
 
     @Override

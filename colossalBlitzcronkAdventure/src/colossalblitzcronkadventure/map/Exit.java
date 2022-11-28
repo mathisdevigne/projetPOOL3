@@ -5,7 +5,7 @@
 package colossalblitzcronkadventure.map;
 
 /**
- *
+ * Class that represent en exit
  * @author Louis Richard
  */
 public class Exit {
