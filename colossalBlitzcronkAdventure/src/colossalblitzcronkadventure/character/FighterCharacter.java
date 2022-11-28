@@ -4,7 +4,7 @@
  */
 package colossalblitzcronkadventure.character;
 
-/**
+/** Represent a FighterCharacter, is  inherited by Player and Ennemy
  *
  * @author theodusehu
  */

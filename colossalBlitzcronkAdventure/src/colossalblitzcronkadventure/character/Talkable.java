@@ -4,7 +4,7 @@
  */
 package colossalblitzcronkadventure.character;
 
-/**
+/** Interface for talking
  *
  * @author theodusehu
  */

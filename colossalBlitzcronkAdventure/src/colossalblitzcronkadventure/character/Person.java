@@ -12,7 +12,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/** Represent a Person, is inherited by FighterCharacter and NPC
  *
  * @author theodusehu
  */

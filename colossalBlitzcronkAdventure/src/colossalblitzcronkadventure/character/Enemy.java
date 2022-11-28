@@ -4,7 +4,7 @@
  */
 package colossalblitzcronkadventure.character;
 
-/**
+/** Represent and Enemy
  *
  * @author theodusehu
  */
