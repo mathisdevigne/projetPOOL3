@@ -31,6 +31,13 @@ public class Player extends FighterCharacter implements Talkable{
     public static Player getPlayer(){
         return Player.BLITZCRONK;
     }
+
+    /** Getter of atttribute intelligence
+     * @return Intelligence
+    */
+    public int getIntelligence() {
+        return this.intelligence;
+    }
     
     /** Upper of intelligence attribute
      * 
