@@ -50,7 +50,8 @@ public abstract class Person implements Lookable{
     @Override
     public void look(List<String> command){
         this.look();
-        
+    }    
+    
     /** Map of the different dialogues from the file dialogues.txt
      * 
      */
