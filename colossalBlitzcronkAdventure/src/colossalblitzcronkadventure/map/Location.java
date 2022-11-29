@@ -5,17 +5,19 @@
 package colossalblitzcronkadventure.map;
 
 import colossalblitzcronkadventure.character.Person;
+import colossalblitzcronkadventure.command.Lookable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Class that represent a Location
  * @author mathi
  */
-public class Location {
+public class Location implements Lookable{
     private final String DESCRIPTION;
     private final MapID ID;
     private final Map<MapID, Exit> EXITS;
@@ -118,6 +120,22 @@ public class Location {
     public boolean isExit(MapID id){
         return this.EXITS.containsKey(id);
     }
+    
+    @Override
+    public void look() {
+        System.out.println(this.getDESCRIPTION());
+    }
+
+    @Override
+    public void look(List<String> command) {
+        for(String s : command.subList(1, command.size())){
+            this.PERSONS.stream().filter(p -> p.getName().equals(s)).forEach(p -> p.look());
+        }
+    }
+  public Person take(String s) {
+        Optional<Person> item = this.PERSONS.stream().filter(i -> Lookable.class.isAssignableFrom(i.getClass())).filter(i -> i.getName().equals(s)).findAny();
+        return item.isPresent() ? item.get(): null;
+    }
 
     @Override
     public int hashCode() {
@@ -145,4 +163,5 @@ public class Location {
         final Location other = (Location) obj;
         return this.ID == other.ID;
     } 
+    
 }

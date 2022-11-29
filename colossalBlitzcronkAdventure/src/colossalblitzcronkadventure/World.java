@@ -131,7 +131,7 @@ public class World implements CommandParser{
     @Override
     public void go(List<String> command) {
         if(CommandParser.parseGo(command)){
-            Location goTo = currentLocation.getExit(command.get(1));
+            Location goTo = null; //currentLocation.getExit(command.get(1));
             if (goTo != null){
                 this.currentLocation = goTo;
             }
