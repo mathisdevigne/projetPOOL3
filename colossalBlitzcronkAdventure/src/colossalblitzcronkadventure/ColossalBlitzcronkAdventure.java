@@ -4,9 +4,7 @@
  */
 package colossalblitzcronkadventure;
 
-import colossalblitzcronkadventure.character.Enemy;
-import colossalblitzcronkadventure.character.NPC;
-import colossalblitzcronkadventure.character.Player;
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -16,21 +14,11 @@ public class ColossalBlitzcronkAdventure {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) {
-        Player blitz = Player.getPlayer();
-        Enemy boop = new Enemy("Boop", 10, 10);
-        NPC blip = new NPC("Blip");
-        
-        blitz.print();
-        boop.print();
-        blip.print();
-        
-        blitz.takeDamage(21);
-        boop.takeDamage(20);
-        
-        blitz.print();
-        boop.print();
+    public static void main(String[] args) throws FileNotFoundException {
+        Game g = new Game();
+        g.play();
     }
     
 }

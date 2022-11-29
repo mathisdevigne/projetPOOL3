@@ -4,6 +4,8 @@
  */
 package colossalblitzcronkadventure;
 
+import colossalblitzcronkadventure.map.MapID;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -17,16 +19,15 @@ public class Game {
         this.world = World.get();
     }
     
-    public void play(){
+    public void play() throws FileNotFoundException{
         this.world.initMapTest();
         Scanner input = new Scanner(System.in);
         String i;
         while(true){
             this.world.print();
-            System.out.println("\nWhere would you like to go ?");
+            System.out.println("Where would you like to go ?");
             i = input.next();
-            this.world.goTo(i);
-            
+            this.world.goTo(MapID.valueOf(i.toUpperCase()));    
         }
         //input.close();
     }

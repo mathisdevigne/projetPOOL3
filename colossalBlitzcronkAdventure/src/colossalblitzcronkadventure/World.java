@@ -4,14 +4,26 @@
  */
 package colossalblitzcronkadventure;
 
+
 import colossalblitzcronkadventure.character.Person;
 import colossalblitzcronkadventure.character.Player;
 import colossalblitzcronkadventure.command.CommandParser;
+
+import colossalblitzcronkadventure.map.Exit;
+
 import colossalblitzcronkadventure.map.Location;
 import colossalblitzcronkadventure.map.MapID;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
 import java.util.Arrays;
+
+import java.util.HashMap;
+
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 /**
  *
@@ -19,28 +31,59 @@ import java.util.List;
  */
 public class World implements CommandParser{
     private static final World WORLD = new World();
-    private List<Location> locations;
+    private final List<Location> LOCATIONS;
     private Location currentLocation;
     
     private World(){
-        this.locations = new ArrayList<>();
+        this.LOCATIONS = new ArrayList<>();
+        
     }
     
     public static World get(){
         return World.WORLD;
     }
     
-    public void initMapTest(){
-        for(int i = 0; i < 5; i++){
-            this.locations.add(new Location(MapID.FACETOVER, "Ceci est la Salle "+(1+i)));
+    public void initMapTest() throws FileNotFoundException{        
+        File file = new File(System.getProperty("user.dir") + "/src/colossalBlitzcronkAdventure/map/map.txt");
+        Scanner input = new Scanner(file);
+        while(input.hasNext()){
+            MapID id = MapID.valueOf(input.next());
+            String desc = "";
+            String s = input.next();
+            while(!s.equals("@")){
+                desc += s + " ";
+                s = input.next();
+            }
+            Location l = new Location(id, desc);
+            String exit = input.next();
+            while(!exit.equals("@")){
+                l.addExits(new Exit(l.getID(), MapID.valueOf(exit)));
+                exit = input.next();
+            }
+            this.LOCATIONS.add(l);
         }
-        for(Location n : this.locations){
-            n.addExits(this.locations.get(2));
-        }
+        input.close();
         
-        this.currentLocation = this.locations.get(0);
+        this.currentLocation = this.LOCATIONS.get(0);
     }
     
+    public Location getLocation(MapID id){
+        for(Location l : this.LOCATIONS){
+            if(l.getID() == id){
+                return l;
+            }
+        }
+        return null;
+    }
+    
+    public void goTo(MapID name){
+        if(this.currentLocation.isExit(name)){
+            MapID l = this.currentLocation.getExit(name);
+            if(l != null){
+                this.currentLocation = this.getLocation(l);
+            }
+        }
+    }
     
     public void print(){
         this.currentLocation.print();
