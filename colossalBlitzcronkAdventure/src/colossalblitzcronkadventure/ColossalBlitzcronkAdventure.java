@@ -6,6 +6,7 @@ package colossalblitzcronkadventure;
 
 import java.io.FileNotFoundException;
 
+
 /**
  *
  * @author mathi
@@ -19,6 +20,24 @@ public class ColossalBlitzcronkAdventure {
     public static void main(String[] args) throws FileNotFoundException {
         Game g = new Game();
         g.play();
+        
+    public static void main(String[] args) {
+        Player blitz = Player.getPlayer();
+        Enemy boop = new Enemy("Boop", 10, 10);
+        NPC blip = new NPC("Blip");
+        
+        blitz.print();
+        boop.print();
+        blip.print();
+        
+        blitz.takeDamage(21);
+        boop.takeDamage(20);
+        
+        blitz.print();
+        boop.print();
+        
+        blip.talkId(1);
+        blitz.talkId(0);
     }
     
 }

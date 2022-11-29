@@ -4,12 +4,18 @@
  */
 package colossalblitzcronkadventure.character;
 
-/**
+/** Represent and Enemy
  *
  * @author theodusehu
  */
-public class Enemy extends CombatableCharacter{
+public class Enemy extends FighterCharacter{
 
+    /** Constructor of object Ennemy
+     * 
+     * @param NAME Name of the Ennemy
+     * @param MAX_PV Maximum number of PV
+     * @param STRENGTH Strength (Attack) of the Ennemy
+     */
     public Enemy(String NAME, int MAX_PV, int STRENGTH) {
         super(NAME, MAX_PV, STRENGTH);
     }
