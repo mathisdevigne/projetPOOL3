@@ -4,26 +4,39 @@
  */
 package colossalblitzcronkadventure.items;
 
-/**
+import colossalblitzcronkadventure.character.Player;
+
+/** Represent a Consumable Item
  *
  * @author theodusehu
  */
 public class Consumable extends Item {
     
-    private int value;
+    private final String TYPE;
+    private final int VALUE;
     
-    public Consumable(String name, String description) {
+    /** Constructor of object Consumable
+     * 
+     * @param name Name of the Item
+     * @param description Description of the Item
+     * @param type Type of the Item
+     * @param value Value of the Item
+     */
+    public Consumable(String name, String description, String type, int value) {
         super(name, description);
+        this.TYPE = type;
+        this.VALUE = value;
     }
 
     @Override
     public void use() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        switch(this.TYPE){
+            case "H" : Player.getPlayer().modifHealth(VALUE); break;
+        }
     }
 
     @Override
     public void use(Item item) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
    

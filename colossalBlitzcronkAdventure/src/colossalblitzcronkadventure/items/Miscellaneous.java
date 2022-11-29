@@ -4,23 +4,28 @@
  */
 package colossalblitzcronkadventure.items;
 
-/**
+/** Reprend a Miscelleneous Item
  *
  * @author theodusehu
  */
 public class Miscellaneous extends Item{
 
+    /** Constructor of object Miscellaneous
+     * 
+     * @param name Name of the Item
+     * @param description Description of the Item
+     */
     public Miscellaneous(String name, String description) {
         super(name, description);
     }
 
     @Override
     public void use() {
+        System.out.println("Nothing happened.");
     }
 
     @Override
     public void use(Item item) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
    

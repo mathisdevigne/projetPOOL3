@@ -6,7 +6,7 @@ package colossalblitzcronkadventure.items;
 
 import colossalblitzcronkadventure.character.Player;
 
-/**
+/** Represent a Weapon Item
  *
  * @author theodusehu
  */
@@ -15,6 +15,12 @@ public class Weapon extends Item{
     private boolean isEquiped = false;
     private final int STRENGTH;
     
+    /** Constructor of object Weapon
+     * 
+     * @param name Name of the Item 
+     * @param description Description of the Item
+     * @param strength Strength of the Item (attack bonus)
+     */
     public Weapon(String name, String description ,int strength) {
         super(name, description);
         this.STRENGTH = strength;

@@ -4,8 +4,8 @@
  */
 package colossalblitzcronkadventure.character;
 
+import colossalblitzcronkadventure.items.Consumable;
 import colossalblitzcronkadventure.items.Item;
-import colossalblitzcronkadventure.items.Miscellaneous;
 import colossalblitzcronkadventure.items.Weapon;
 import colossalblitzcronkadventure.items.initItems;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class Player extends FighterCharacter implements Talkable{
     private List<Item> inventory = new ArrayList<>();
     private Item hand = null;    
     
-    private static final Player BLITZCRONK = new Player("Blitzcrong", 20, 10);
+    private static final Player BLITZCRONK = new Player("Blitzcrong", 20, 0);
 
     /** Constructor of object Player
      * @param NAME Name of the Player
@@ -57,6 +57,11 @@ public class Player extends FighterCharacter implements Talkable{
         this.intelligence =+ val;
     }
     
+    /** Getter of an Item from the inventory
+     *
+     * @param name Name of the Item
+     * @return Item
+     */
     public Item getItem(String name){
         for(Item item : this.inventory){
             if(item.getNAME().equals(name)){
@@ -66,6 +71,10 @@ public class Player extends FighterCharacter implements Talkable{
         return null;
     }
     
+    /** Remove an item from the inventory by name
+     *
+     * @param name Name of the Item to remove
+     */
     public void remItem(String name){
         for(Item item : this.inventory){
             if(item.getNAME().equals(name)){
@@ -74,18 +83,33 @@ public class Player extends FighterCharacter implements Talkable{
         }
     }
     
+    /** Add an Item to the inventory
+     *
+     * @param item Item to add
+     */
     public void addInventory(Item item){
         this.inventory.add(item);
     }
     
+    /** Remove an Item from inventory
+     *
+     * @param item Item to remove
+     */
     public void remInventory(Item item){
         this.inventory.remove(item);
     }
     
+    /** Add an Item to the hand of the Player
+     *
+     * @param item Item to Add
+     */
     public void addHand(Item item){
         this.hand = item;
     }
     
+    /** Remove an Item from the hand of the Player
+     *
+     */
     public void remHand(){
         this.hand = null;
     }
@@ -95,6 +119,9 @@ public class Player extends FighterCharacter implements Talkable{
         System.out.println(this.getName() + ": " + this.getPv() + "/" + this.getMAX_PV() + " Int : " + this.intelligence + " Str : " + this.getStrength());
     }
     
+    /** Print Items in the inventory
+     *
+     */
     public void printInventory(){
         System.out.print("Inventory : ");
         int size = inventory.size();
@@ -114,7 +141,7 @@ public class Player extends FighterCharacter implements Talkable{
 
     /** Global use command
      * 
-     * @param name 
+     * @param name Name of the Item to use
      */
     public void use(String name) {
         Item item = this.getItem(name);
@@ -124,12 +151,31 @@ public class Player extends FighterCharacter implements Talkable{
                 if(item instanceof Weapon){
                     this.addHand(item);
                 }
+                if(item instanceof Consumable){
+                    remInventory(item);
+                }
             }
             else{
-                item.use();
-                if(item instanceof Weapon){
-                    this.remHand();
+                if(hand == item){
+                    item.use();
+                    if(item instanceof Weapon){
+                        this.remHand();
+                    }
+                    if(item instanceof Consumable){
+                        remInventory(item);
+                    }
                 }
+                else{
+                    if(item instanceof Weapon){
+                         System.out.println("You can't equip the weapon, first desequip the one you have.");
+                    }
+                    if(item instanceof Consumable){
+                        item.use();
+                        remInventory(item);
+                    } 
+                }
+                
+                
             }
             
         }
@@ -137,8 +183,8 @@ public class Player extends FighterCharacter implements Talkable{
     
     /** Use command to fuse objects
      * 
-     * @param obj1
-     * @param obj2 
+     * @param obj1 First object, base for fusion
+     * @param obj2 Second object, use to know if fusion is possible
      */
     public void use(String obj1, String obj2){
         Item item1 = this.getItem(obj1);
@@ -163,7 +209,7 @@ public class Player extends FighterCharacter implements Talkable{
         }
         
     }
-
+    
     @Override
     public void talkId(int id) {
         System.out.println(Player.DIALOGUES.get(id));

@@ -8,7 +8,6 @@ import colossalblitzcronkadventure.character.Enemy;
 import colossalblitzcronkadventure.character.NPC;
 import colossalblitzcronkadventure.character.Player;
 import colossalblitzcronkadventure.items.Item;
-import colossalblitzcronkadventure.items.Weapon;
 import colossalblitzcronkadventure.items.initItems;
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -36,15 +35,17 @@ public class ColossalBlitzcronkAdventure {
             item.printInter();
         }*/
         
+        Player.getPlayer().addInventory(list.get(0));
+        Player.getPlayer().addInventory(list.get(2));
         Player.getPlayer().addInventory(list.get(1));
-        Player.getPlayer().addInventory(list.get(3));
+        Player.getPlayer().addInventory(list.get(4));
+        Player.getPlayer().addInventory(list.get(5));
         
         Player.getPlayer().printInventory();
         Player.getPlayer().use("Stick", "String");
         Player.getPlayer().printInventory();
-
         
-        /*blitz.print();
+        blitz.print();
         boop.print();
         blip.print();
         
@@ -52,13 +53,33 @@ public class ColossalBlitzcronkAdventure {
         boop.takeDamage(20);
         
         blitz.print();
-        //boop.print();
+        boop.print();
         
-        blitz.use("Excaliburne");
+        blitz.use("Sword");
+        blitz.print();
+        Player.getPlayer().printInventory();
+        
+        blitz.use("Sword");
+        blitz.print();
+        Player.getPlayer().printInventory();
+        
+        blitz.use("SteelHand");
+        blitz.print();
+        Player.getPlayer().printInventory();
+        
+        
+        Player.getPlayer().use("HealthPotion");
+        Player.getPlayer().printInventory();
         
         blitz.print();
         
-        blitz.use("Excaliburne");
+        Player.getPlayer().use("HealthPotion");
+        Player.getPlayer().printInventory();
+        
+        blitz.print();
+        
+        Player.getPlayer().use("HealthPotion");
+        Player.getPlayer().printInventory();
         
         blitz.print();
         

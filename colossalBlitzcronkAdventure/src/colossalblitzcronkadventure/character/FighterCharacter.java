@@ -50,6 +50,18 @@ public abstract class FighterCharacter extends Person {
         return this.strength;
     }
     
+    /** Method to modify the Health attribute
+     * 
+     * @param val Val to add to health attribute
+     */
+    public void modifHealth(int val){
+        this.pv =+ val;
+    }
+    
+    /** Method to modify the Strength attribute
+     * 
+     * @param val Val to add to strength attribute
+     */
     public void modifStrength(int val){
         this.strength += val;
     }
