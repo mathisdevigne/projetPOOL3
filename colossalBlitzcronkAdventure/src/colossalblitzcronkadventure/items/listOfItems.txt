@@ -1,0 +1,5 @@
+W Excaliburne 400000 Epee de la mort qui tue @ @
+W Stick 0 Just a stick, what did you expect ? @ String FishingRode @ @
+M FishingRode A simple FishingRode @ @
+M String A thin String @ @
+C HPPotion Healing potion @ @

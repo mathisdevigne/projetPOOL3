@@ -7,7 +7,11 @@ package colossalblitzcronkadventure;
 import colossalblitzcronkadventure.character.Enemy;
 import colossalblitzcronkadventure.character.NPC;
 import colossalblitzcronkadventure.character.Player;
+import colossalblitzcronkadventure.items.Item;
+import colossalblitzcronkadventure.items.Weapon;
+import colossalblitzcronkadventure.items.initItems;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 
 /**
@@ -25,8 +29,22 @@ public class ColossalBlitzcronkAdventure {
         Player blitz = Player.getPlayer();
         Enemy boop = new Enemy("Boop", 10, 10);
         NPC blip = new NPC("Blip");
+        initItems.creaItem();
         
-        blitz.print();
+        List<Item> list = initItems.getList();
+        /*for(Item item : list){
+            item.printInter();
+        }*/
+        
+        Player.getPlayer().addInventory(list.get(1));
+        Player.getPlayer().addInventory(list.get(3));
+        
+        Player.getPlayer().printInventory();
+        Player.getPlayer().use("Stick", "String");
+        Player.getPlayer().printInventory();
+
+        
+        /*blitz.print();
         boop.print();
         blip.print();
         
@@ -34,13 +52,25 @@ public class ColossalBlitzcronkAdventure {
         boop.takeDamage(20);
         
         blitz.print();
-        boop.print();
+        //boop.print();
         
-        blip.talkId(1);
-        blitz.talkId(0);
+        blitz.use("Excaliburne");
         
-        Game g = new Game();
-        g.play();
+        blitz.print();
+        
+        blitz.use("Excaliburne");
+        
+        blitz.print();
+        
+        //Weapon ex = new Weapon("Stick", 0);
+        
+        //ex.printInter();
+        
+        //blitz.addInventory(item);
+        
+        
+        //Game g = new Game();
+        //g.play(); */
     }
     
 }
