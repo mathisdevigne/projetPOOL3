@@ -4,11 +4,14 @@
  */
 package colossalblitzcronkadventure.character;
 
+import colossalblitzcronkadventure.command.Lookable;
+import java.util.List;
+
 /**
  *
  * @author theodusehu
  */
-public abstract class Person {
+public abstract class Person implements Lookable{
     private final String NAME;
     
     public Person(String NAME){
@@ -21,5 +24,14 @@ public abstract class Person {
         return this.NAME;
     }
     
+    @Override
+    public void look(){
+        this.print();
+    }
+    
+    @Override
+    public void look(List<String> command){
+        this.look();
+    }
 
 }

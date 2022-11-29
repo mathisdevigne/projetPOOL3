@@ -32,4 +32,8 @@ public class Player extends CombatableCharacter{
         System.out.println(this.getName() + ": " + this.getPv() + "/" + this.getMAX_PV() + " Int : " + this.intelligence + " Str : " + this.getSTRENGTH());
     }
 
+    public void use(String get) {
+        //item.stream.mescouilles();
+    }
+
 }
