@@ -8,6 +8,7 @@ package colossalblitzcronkadventure;
 import colossalblitzcronkadventure.character.Person;
 import colossalblitzcronkadventure.character.Player;
 import colossalblitzcronkadventure.command.CommandParser;
+import colossalblitzcronkadventure.items.Item;
 
 import colossalblitzcronkadventure.map.Exit;
 
@@ -175,9 +176,11 @@ public class World implements CommandParser{
 
     @Override
     public void take(List<String> command) {
-        Person item = this.currentLocation.take(command.get(1));
-        if(item != null){
-            //Player.getPlayer().addItem(item);
+        for(String s : command.subList(0, command.size())){
+            Item item = this.currentLocation.take(s);
+            if(item != null){
+                Player.getPlayer().addInventory(item);
+            }
         }
     }
 }

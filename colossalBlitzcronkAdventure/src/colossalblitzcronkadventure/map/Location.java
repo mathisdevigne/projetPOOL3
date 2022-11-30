@@ -6,6 +6,7 @@ package colossalblitzcronkadventure.map;
 
 import colossalblitzcronkadventure.character.Person;
 import colossalblitzcronkadventure.command.Lookable;
+import colossalblitzcronkadventure.items.Item;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +23,7 @@ public class Location implements Lookable{
     private final MapID ID;
     private final Map<MapID, Exit> EXITS;
     private final List<Person> PERSONS;
+    private final List<Item> ITEMS;
     
     /**
      * Constructor of the Location class
@@ -33,6 +35,7 @@ public class Location implements Lookable{
         this.EXITS = new HashMap<>();
         this.ID = mapid;
         this.PERSONS = new ArrayList<>();
+        this.ITEMS = new ArrayList<>();
     }
     
     /**
@@ -132,8 +135,8 @@ public class Location implements Lookable{
             this.PERSONS.stream().filter(p -> p.getName().equals(s)).forEach(p -> p.look());
         }
     }
-  public Person take(String s) {
-        Optional<Person> item = this.PERSONS.stream().filter(i -> Lookable.class.isAssignableFrom(i.getClass())).filter(i -> i.getName().equals(s)).findAny();
+  public Item take(String s) {
+        Optional<Item> item = this.ITEMS.stream().filter(i -> Lookable.class.isAssignableFrom(i.getClass())).filter(i -> i.getNAME().equals(s)).findAny();
         return item.isPresent() ? item.get(): null;
     }
 
