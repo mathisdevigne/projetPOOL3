@@ -32,8 +32,11 @@ public class Miscellaneous extends Item{
 
     @Override
     public void use() {
-        Player.getPlayer().addInventory(new Miscellaneous(resItem.getNAME(), resItem.getDes(), null));
-        System.out.println("You've obtain " + resItem.getNAME() +".");
+        if(resItem != null){
+            Player.getPlayer().addInventory(resItem);
+            System.out.println("You've obtain " + resItem.getNAME() +".");
+            Player.getPlayer().remInventory(this);
+        }
     }
 
     @Override

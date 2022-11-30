@@ -60,6 +60,8 @@ public class ColossalBlitzcronkAdventure {
         blitz.use("FishingRode");
         blitz.use("FishingRode");
         
+        blitz.use("Fish");
+        
         blitz.use("Sword");
         blitz.print();
         Player.getPlayer().printInventory();
