@@ -4,24 +4,36 @@
  */
 package colossalblitzcronkadventure.items;
 
+import colossalblitzcronkadventure.character.Player;
+import java.util.List;
+
 /** Reprend a Miscelleneous Item
  *
  * @author theodusehu
  */
 public class Miscellaneous extends Item{
 
+    private Item resItem;
+    
     /** Constructor of object Miscellaneous
      * 
      * @param name Name of the Item
      * @param description Description of the Item
+     * @param resName Name of the Item get by using this Item
      */
-    public Miscellaneous(String name, String description) {
+    public Miscellaneous(String name, String description, String resName) {
         super(name, description);
+        List<Item> itemList = initItems.getList();
+        for(Item item : itemList){
+            if(item.getNAME().equals(resName))
+                this.resItem = item;
+        }
     }
 
     @Override
     public void use() {
-        System.out.println("Nothing happened.");
+        Player.getPlayer().addInventory(new Miscellaneous(resItem.getNAME(), resItem.getDes(), null));
+        System.out.println("You've obtain " + resItem.getNAME() +".");
     }
 
     @Override

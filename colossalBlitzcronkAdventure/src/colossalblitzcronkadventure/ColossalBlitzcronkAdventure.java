@@ -38,8 +38,8 @@ public class ColossalBlitzcronkAdventure {
         Player.getPlayer().addInventory(list.get(0));
         Player.getPlayer().addInventory(list.get(2));
         Player.getPlayer().addInventory(list.get(1));
-        Player.getPlayer().addInventory(list.get(4));
         Player.getPlayer().addInventory(list.get(5));
+        Player.getPlayer().addInventory(list.get(6));
         
         Player.getPlayer().printInventory();
         Player.getPlayer().use("Stick", "String");
@@ -54,6 +54,11 @@ public class ColossalBlitzcronkAdventure {
         
         blitz.print();
         boop.print();
+        
+        blitz.use("FishingRode");
+        blitz.use("FishingRode");
+        blitz.use("FishingRode");
+        blitz.use("FishingRode");
         
         blitz.use("Sword");
         blitz.print();
