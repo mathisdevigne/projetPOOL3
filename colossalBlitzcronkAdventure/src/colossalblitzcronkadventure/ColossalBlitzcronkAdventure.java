@@ -24,7 +24,9 @@ public class ColossalBlitzcronkAdventure {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException {
+        World w = World.get();
         
+        /*
         Player blitz = Player.getPlayer();
         Enemy boop = new Enemy("Boop", 10, 10);
         NPC blip = new NPC("Blip");
@@ -99,6 +101,7 @@ public class ColossalBlitzcronkAdventure {
         
         //Game g = new Game();
         //g.play(); */
+        
     }
     
 }

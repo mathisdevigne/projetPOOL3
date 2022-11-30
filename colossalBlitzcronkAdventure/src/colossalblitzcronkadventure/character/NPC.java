@@ -9,19 +9,24 @@ package colossalblitzcronkadventure.character;
  * @author theodusehu
  */
 public class NPC extends Person implements Talkable{
+    private String TALK1;
+    private String TALK2;
+    
     
     /** Constructor of object NPC
      * @param NAME Name of NPC
      */
-    public NPC(String NAME) {
+    public NPC(String NAME, String t1, String t2) {
         super(NAME);
+        this.TALK1 = t1;
+        this.TALK2 = t2;
     }
 
     /** Print the name of NPC
      */
     @Override
     public void print() {
-        System.out.println(this.getName());
+        System.out.println(this.getName() + this.TALK1 + '\n'+ this.TALK2);
     }
 
     /** Get the dialogues int the map from the ID

@@ -5,10 +5,16 @@
 package colossalblitzcronkadventure;
 
 
+import colossalblitzcronkadventure.character.Enemy;
+import colossalblitzcronkadventure.character.NPC;
 import colossalblitzcronkadventure.character.Person;
 import colossalblitzcronkadventure.character.Player;
 import colossalblitzcronkadventure.command.CommandParser;
+import colossalblitzcronkadventure.items.Consumable;
 import colossalblitzcronkadventure.items.Item;
+import colossalblitzcronkadventure.items.Miscellaneous;
+import colossalblitzcronkadventure.items.Weapon;
+import colossalblitzcronkadventure.items.initItems;
 
 import colossalblitzcronkadventure.map.Exit;
 
@@ -20,11 +26,11 @@ import java.util.ArrayList;
 
 import java.util.Arrays;
 
-import java.util.HashMap;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,11 +43,110 @@ public class World implements CommandParser{
     
     private World(){
         this.LOCATIONS = new ArrayList<>();
-        
+        this.init();
     }
     
     public static World get(){
         return World.WORLD;
+    }
+    
+    private void init(){
+        File file = new File(System.getProperty("user.dir") + "/src/colossalBlitzcronkAdventure/init.txt");
+        Scanner input;
+        List<Item> items = new ArrayList<>();
+        List<Person> persons = new ArrayList<>();
+        try {
+            input = new Scanner(file);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
+        String ftype = input.next();
+        while(input.hasNext() && ftype.equals("I")){
+            String type = input.next();
+            String itemName = input.next();
+            int str = 0;
+            int val = 0;
+            String consType = "";
+            String resName = "";
+            if("W".equals(type)){
+                str = input.nextInt();
+            }
+            if("C".equals(type)){
+                consType = input.next();
+                val = input.nextInt();
+            }
+            if("M".equals(type)){
+                resName = input.next();
+            }
+            String description = "";
+            String s = input.next();
+            while(!s.equals("@")){
+                description += s + " ";
+                s = input.next();
+            }
+            switch(type){
+                case "W" : items.add(new Weapon(itemName, description ,str)); break;
+                case "M" : items.add(new Miscellaneous(itemName, description,resName)); break;
+                case "C" : items.add(new Consumable(itemName, description, consType, val)); break;
+            }
+            input.nextLine();
+            ftype = input.next();
+        }
+        try {
+            input = new Scanner(file);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
+        ftype = input.next();
+        while(input.hasNext() && ftype.equals("I")){
+            input.next();
+            String itemName = input.next();
+            input.findInLine("@");
+            String s = input.next();
+            while(!s.equals("@")){
+                Item fItem = null;
+                String fusingItem = s;
+                s = input.next();
+                String fusedItem = s;
+                s = input.next();
+                
+                for(Item item : items){
+                    if(item.getNAME().equals(fusedItem)){
+                        fItem = item;
+                    }
+                }
+                for(Item item : items){
+                    if(item.getNAME().equals(itemName)){
+                        item.addInter(fusingItem, fItem);
+                    }
+                }
+            }
+            ftype = input.next();
+        }
+        while(input.hasNext() && ftype.equals("P")){
+            String type = input.next();
+            String name = input.next();
+            if(type.equals("E")){
+                int pv = input.nextInt();
+                int str = input.nextInt();
+                persons.add(new Enemy(name, pv, str));
+                input.nextLine();
+            }
+            else{
+                String[] all = input.nextLine().replace("\\n", "\n").split("@");
+                persons.add(new NPC(name, all[0], all[1]));
+            }
+        }
+        persons.get(0).print();
+        
+        
+        input.close();
+        for(Item item : items){
+            System.out.println(item.getNAME() + " : " + item.getDes() + " ");
+            item.printInter();
+        }
     }
     
     public void initMapTest() throws FileNotFoundException{        

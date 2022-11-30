@@ -33,34 +33,7 @@ public class initItems {
     public static void creaItem() throws FileNotFoundException{
         try (Scanner sc = new Scanner(new File(System.getProperty("user.dir") + "/src/colossalBlitzcronkAdventure/items/listOfItems.txt"))) {
             while(sc.hasNext()){
-                String type = sc.next();
-                String itemName = sc.next();
-                int str = 0;
-                int val = 0;
-                String consType = "";
-                String resName = "";
-                if("W".equals(type)){
-                    str = sc.nextInt();
-                }
-                if("C".equals(type)){
-                    consType = sc.next();
-                    val = sc.nextInt();
-                }
-                if("M".equals(type)){
-                    resName = sc.next();
-                }
-                String description = "";
-                String s = sc.next();
-                while(!s.equals("@")){
-                    description += s + " ";
-                    s = sc.next();
-                }
-                switch(type){
-                    case "W" : initItems.itemList.add(new Weapon(itemName, description ,str)); break;
-                    case "M" : initItems.itemList.add(new Miscellaneous(itemName, description,resName)); break;
-                    case "C" : initItems.itemList.add(new Consumable(itemName, description, consType, val)); break;
-                }
-                sc.nextLine();
+                
                 
             }
             

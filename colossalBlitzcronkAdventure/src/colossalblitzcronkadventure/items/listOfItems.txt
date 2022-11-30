@@ -1,7 +1,8 @@
-W Sword 0 A rusty sword @ @
-W Stick 0 Just a stick, what did you expect ? @ String FishingRode @ @
-W SteelHand 10 The missing hand of Blitz @ @
-M Fish null A fish @ @
-M FishingRode Fish A simple FishingRode @ @
-M String null A thin String @ @
-C HealthPotion H 10 Healing potion @ @
+I W Sword 0 A rusty sword @ @
+I W Stick 0 Just a stick, what did you expect ? @ String FishingRode @ @
+I W SteelHand 10 The missing hand of Blitz @ @
+I M Fish null A fish @ @
+I M FishingRode Fish A simple FishingRode @ @
+I M String null A thin String @ @
+I C HealthPotion H 10 Healing potion @ @
+ 
