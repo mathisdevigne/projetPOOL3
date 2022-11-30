@@ -50,11 +50,29 @@ public class Location implements Lookable{
     }
     
     /**
+     * Add an LockedExit to the the list of Exit in the Location
+     * @param newExit the new exit to add int the list
+     */
+    public void addExits(LockedExit newExit){
+        if(newExit.isOrigin(this.ID)){
+            this.EXITS.put(newExit.getDESTINATION(), newExit);
+        }
+    }
+    
+    /**
      * Add a Person to the list of Person in the Location 
      * @param person the new person to add in the list
      */
     public void addPerson(Person person){
         this.PERSONS.add(person);
+    }
+    
+    /**
+     * Add a Item to the list of Item in the Location 
+     * @param item the new item to add in the list
+     */
+    public void addItem(Item item){
+        this.ITEMS.add(item);
     }
 
     /**

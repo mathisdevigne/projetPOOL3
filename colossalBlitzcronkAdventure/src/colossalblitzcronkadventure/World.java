@@ -14,11 +14,13 @@ import colossalblitzcronkadventure.items.Consumable;
 import colossalblitzcronkadventure.items.Item;
 import colossalblitzcronkadventure.items.Miscellaneous;
 import colossalblitzcronkadventure.items.Weapon;
+
 import colossalblitzcronkadventure.items.initItems;
 
 import colossalblitzcronkadventure.map.Exit;
 
 import colossalblitzcronkadventure.map.Location;
+import colossalblitzcronkadventure.map.LockedExit;
 import colossalblitzcronkadventure.map.MapID;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,6 +30,7 @@ import java.util.Arrays;
 
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,6 +65,7 @@ public class World implements CommandParser{
             return;
         }
         String ftype = input.next();
+        //Parse Item :
         while(input.hasNext() && ftype.equals("I")){
             String type = input.next();
             String itemName = input.next();
@@ -100,6 +104,7 @@ public class World implements CommandParser{
             return;
         }
         ftype = input.next();
+        //ReParse Item for interaction :
         while(input.hasNext() && ftype.equals("I")){
             input.next();
             String itemName = input.next();
@@ -125,6 +130,7 @@ public class World implements CommandParser{
             }
             ftype = input.next();
         }
+        //Parse Persons :
         while(input.hasNext() && ftype.equals("P")){
             String type = input.next();
             String name = input.next();
@@ -134,12 +140,44 @@ public class World implements CommandParser{
                 persons.add(new Enemy(name, pv, str));
                 input.nextLine();
             }
-            else{
+            else if(type.equals("N")){
                 String[] all = input.nextLine().replace("\\n", "\n").split("@");
                 persons.add(new NPC(name, all[0], all[1]));
             }
+            ftype = input.next();
         }
-        persons.get(0).print();
+        //Parse Location :
+        while(input.hasNext() && ftype.equals("L")){
+            MapID id = MapID.valueOf(input.next());
+            String[] line = input.nextLine().split("@");
+            String desc = line[1];
+            Location l = new Location(id, desc);
+            boolean nextlocked = false;
+            for(String ex : line[0].split(" ")){ //Exits
+                if(ex.equals("LOCKED")){
+                    nextlocked = true;
+                }
+                else if(nextlocked){
+                    l.addExits(new LockedExit(id,MapID.valueOf(ex)));
+                }
+                else{
+                    l.addExits(new Exit(id,MapID.valueOf(ex)));
+                }
+            }
+            for(String pers : line[2].split(" ")){ //Persons
+                persons.stream().filter(p->p.getName().toUpperCase().equals(pers)).forEach(p -> l.addPerson(p));
+            }
+            for(String it : line[2].split(" ")){ //Items
+                items.stream().filter(i->i.getNAME().toUpperCase().equals(it)).forEach(i -> l.addItem(i));
+            }
+            
+            
+            this.LOCATIONS.add(l);
+        
+            ftype = input.next();
+        }
+        
+                
         
         
         input.close();
