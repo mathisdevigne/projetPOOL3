@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class Player extends FighterCharacter implements Talkable{
     private static final int DEF_INT = 0;
     private int intelligence;
-    private List<Item> inventory = new ArrayList<>();
+    private final List<Item> INVENTORY = new ArrayList<>();
     private Item hand = null;    
     
     private static final Player BLITZCRONK = new Player("Blitzcrong", 20, 0);
@@ -57,13 +57,13 @@ public class Player extends FighterCharacter implements Talkable{
         this.intelligence =+ val;
     }
     
-    /** Getter of an Item from the inventory
+    /** Getter of an Item from the INVENTORY
      *
      * @param name Name of the Item
      * @return Item
      */
     public Item getItem(String name){
-        for(Item item : this.inventory){
+        for(Item item : this.INVENTORY){
             if(item.getNAME().equals(name)){
                 return item;
             }
@@ -71,32 +71,32 @@ public class Player extends FighterCharacter implements Talkable{
         return null;
     }
     
-    /** Remove an item from the inventory by name
+    /** Remove an item from the INVENTORY by name
      *
      * @param name Name of the Item to remove
      */
     public void remItem(String name){
-        for(Item item : this.inventory){
+        for(Item item : this.INVENTORY){
             if(item.getNAME().equals(name)){
-                inventory.remove(item);
+                INVENTORY.remove(item);
             }
         }
     }
     
-    /** Add an Item to the inventory
+    /** Add an Item to the INVENTORY
      *
      * @param item Item to add
      */
     public void addInventory(Item item){
-        this.inventory.add(item);
+        this.INVENTORY.add(item);
     }
     
-    /** Remove an Item from inventory
+    /** Remove an Item from INVENTORY
      *
      * @param item Item to remove
      */
     public void remInventory(Item item){
-        this.inventory.remove(item);
+        this.INVENTORY.remove(item);
     }
     
     /** Add an Item to the hand of the Player
@@ -119,14 +119,14 @@ public class Player extends FighterCharacter implements Talkable{
         System.out.println(this.getName() + ": " + this.getPv() + "/" + this.getMAX_PV() + " Int : " + this.intelligence + " Str : " + this.getStrength());
     }
     
-    /** Print Items in the inventory
+    /** Print Items in the INVENTORY
      *
      */
     public void printInventory(){
         System.out.print("Inventory : ");
-        int size = inventory.size();
+        int size = INVENTORY.size();
         int i = 1;
-        for(Item item : inventory){
+        for(Item item : INVENTORY){
             if(i < size){
                 System.out.print(item.getNAME() + ", ");
                 i++;
@@ -189,7 +189,6 @@ public class Player extends FighterCharacter implements Talkable{
     public void use(String obj1, String obj2){
         Item item1 = this.getItem(obj1);
         Item item2 = this.getItem(obj2);
-        List<Item> list = initItems.getList();
         if(item1 == null || item2 == null){
             System.out.println("You don't have those objects.");
         }

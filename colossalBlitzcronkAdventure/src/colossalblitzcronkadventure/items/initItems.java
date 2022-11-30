@@ -74,12 +74,10 @@ public class initItems {
         
         while(sc.hasNext()){
             
-            String s = sc.next();
+            sc.next();
             String itemName = sc.next();
-            while(!s.equals("@")){
-                s = sc.next();
-            }
-            s = sc.next();
+            sc.findInLine("@");
+            String s = sc.next();
             while(!s.equals("@")){
                 Item fItem = null;
                 String fusingItem = s;

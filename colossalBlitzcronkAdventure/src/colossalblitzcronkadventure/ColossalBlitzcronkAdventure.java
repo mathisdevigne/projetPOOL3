@@ -31,9 +31,9 @@ public class ColossalBlitzcronkAdventure {
         initItems.creaItem();
         
         List<Item> list = initItems.getList();
-        /*for(Item item : list){
+        for(Item item : list){
             item.printInter();
-        }*/
+        }
         
         Player.getPlayer().addInventory(list.get(0));
         Player.getPlayer().addInventory(list.get(2));
