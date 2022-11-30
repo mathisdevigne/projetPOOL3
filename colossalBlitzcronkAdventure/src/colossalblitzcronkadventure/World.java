@@ -192,25 +192,21 @@ public class World implements CommandParser{
         }*/
     }
         
-    public Location getLocation(MapID id){
+    public Location getLocation(String id){
         for(Location l : this.LOCATIONS){
-            if(l.getID() == id){
+            if(id.equals(l.getID().toString())){
                 return l;
             }
         }
         return null;
     }
     
-    public void goTo(MapID name){
-        if(this.currentLocation.isExit(name)){
-            MapID l = this.currentLocation.getExit(name);
-            if(l != null){
-                this.currentLocation = this.getLocation(l);
-            }
-        }
-    }
-    
     public void print(){
+        System.out.println("================================================================");
+        System.out.print("\t\t");
+        Player.getPlayer().print();
+        System.out.println("================================================================");
+        System.out.println();
         this.currentLocation.print();
     }
     
@@ -256,7 +252,7 @@ public class World implements CommandParser{
     @Override
     public void go(List<String> command) {
         if(CommandParser.parseGo(command)){
-            Location goTo = this.getLocation(MapID.valueOf(command.get(1)));
+            Location goTo = this.getLocation(command.get(1));
             if (goTo != null){
                 this.currentLocation = goTo;
             }
@@ -308,8 +304,11 @@ public class World implements CommandParser{
         for(String s : command.subList(1, command.size())){
             Item item = this.currentLocation.take(s);
             if(item != null){
-                System.out.println("Tou have picked up " + s);
+                System.out.println("You have picked up " + s);
                 Player.getPlayer().addInventory(item);
+            }
+            else{
+                System.out.println("Thers is nothing like this here");
             }
         }
     }

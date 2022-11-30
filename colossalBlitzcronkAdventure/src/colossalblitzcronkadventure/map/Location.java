@@ -26,6 +26,7 @@ public class Location implements Lookable{
     private final List<Person> PERSONS;
     private final List<Item> ITEMS;
     private boolean firstVisit;
+    private boolean firstSearch;
     
     /**
      * Constructor of the Location class
@@ -39,6 +40,7 @@ public class Location implements Lookable{
         this.PERSONS = new ArrayList<>();
         this.ITEMS = new ArrayList<>();
         this.firstVisit = true;
+        this.firstSearch = true;
     }
     
     /**
@@ -138,6 +140,10 @@ public class Location implements Lookable{
                 npc.print();
             }
         }
+        
+        if(!this.ITEMS.isEmpty() && !this.firstSearch){
+            this.printITEMS();
+        }
     }
 
     /**
@@ -149,15 +155,23 @@ public class Location implements Lookable{
         return this.EXITS.containsKey(id);
     }
     
+    public void printITEMS(){
+        System.out.println("Items :");
+        for(Item i : this.ITEMS){
+            System.out.println(" - " + i.getNAME());
+        }
+    }
+    
     @Override
     public void look() {
         System.out.println(this.getDESCRIPTION());
         if(!this.ITEMS.isEmpty())
         {
-            System.out.println("You find some items :");
-            for(Item i : this.ITEMS){
-                System.out.println(" - " + i.getNAME());
-            }
+            this.firstSearch = false;
+            System.out.println("You find some items !");
+        }
+        else{
+            System.out.println("There is nothing more to see");
         }
     }
 

@@ -7,7 +7,6 @@ package colossalblitzcronkadventure.character;
 import colossalblitzcronkadventure.items.Consumable;
 import colossalblitzcronkadventure.items.Item;
 import colossalblitzcronkadventure.items.Weapon;
-import colossalblitzcronkadventure.items.initItems;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -64,7 +63,7 @@ public class Player extends FighterCharacter implements Talkable{
      */
     public Item getItem(String name){
         for(Item item : this.INVENTORY){
-            if(item.getNAME().equals(name)){
+            if(item.getNAME().toUpperCase().equals(name)){
                 return item;
             }
         }
