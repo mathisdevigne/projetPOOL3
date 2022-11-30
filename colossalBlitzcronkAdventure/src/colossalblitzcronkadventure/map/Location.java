@@ -25,6 +25,7 @@ public class Location implements Lookable{
     private final Map<MapID, Exit> EXITS;
     private final List<Person> PERSONS;
     private final List<Item> ITEMS;
+    private boolean firstVisit;
     
     /**
      * Constructor of the Location class
@@ -37,6 +38,7 @@ public class Location implements Lookable{
         this.ID = mapid;
         this.PERSONS = new ArrayList<>();
         this.ITEMS = new ArrayList<>();
+        this.firstVisit = true;
     }
     
     /**
@@ -120,7 +122,11 @@ public class Location implements Lookable{
      * Print the inforamtions of the Location
      */
     public void print(){
-        System.out.println(this.ID + "\n" +this.DESCRIPTION);
+        System.out.println(this.ID);
+        if(this.firstVisit){
+            System.out.println(this.DESCRIPTION);
+            this.firstVisit = false;
+        }
         
         System.out.println("Exits :");
         for(MapID map : this.EXITS.keySet()){
@@ -129,7 +135,7 @@ public class Location implements Lookable{
         if(!this.PERSONS.isEmpty())
         {
             for(Person npc : this.PERSONS){
-                System.out.print(npc);
+                npc.print();
             }
         }
     }
@@ -146,16 +152,26 @@ public class Location implements Lookable{
     @Override
     public void look() {
         System.out.println(this.getDESCRIPTION());
+        if(!this.ITEMS.isEmpty())
+        {
+            System.out.println("You find some items :");
+            for(Item i : this.ITEMS){
+                System.out.println(" - " + i.getNAME());
+            }
+        }
     }
 
     @Override
     public void look(List<String> command) {
         for(String s : command.subList(1, command.size())){
-            this.PERSONS.stream().filter(p -> p.getName().equals(s)).forEach(p -> p.look());
+            this.PERSONS.stream().filter(p -> p.getName().toUpperCase().equals(s)).forEach(p -> p.look());
         }
     }
-  public Item take(String s) {
-        Optional<Item> item = this.ITEMS.stream().filter(i -> Takeable.class.isAssignableFrom(i.getClass())).filter(i -> i.getNAME().equals(s)).findAny();
+    public Item take(String s) {
+        Optional<Item> item = this.ITEMS.stream()/*.filter(i -> Takeable.class.isAssignableFrom(i.getClass()))*/.filter(i -> i.getNAME().toUpperCase().equals(s)).findAny();
+        if(item.isPresent()){
+           this.ITEMS.remove(item.get());
+        }
         return item.isPresent() ? item.get(): null;
     }
 

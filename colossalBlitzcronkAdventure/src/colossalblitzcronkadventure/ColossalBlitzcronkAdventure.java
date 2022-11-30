@@ -10,7 +10,6 @@ import colossalblitzcronkadventure.character.Player;
 import colossalblitzcronkadventure.items.Item;
 import colossalblitzcronkadventure.items.initItems;
 import java.io.FileNotFoundException;
-import java.util.List;
 
 
 /**
@@ -24,9 +23,9 @@ public class ColossalBlitzcronkAdventure {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException {
-        World w = World.get();
+        /*World w = World.get();
         
-        /*
+        
         Player blitz = Player.getPlayer();
         Enemy boop = new Enemy("Boop", 10, 10);
         NPC blip = new NPC("Blip");
@@ -96,11 +95,11 @@ public class ColossalBlitzcronkAdventure {
         
         //ex.printInter();
         
-        //blitz.addInventory(item);
+        //blitz.addInventory(item);*/
         
         
-        //Game g = new Game();
-        //g.play(); */
+        Game g = new Game();
+        g.play();
         
     }
     

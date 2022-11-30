@@ -30,7 +30,6 @@ import java.util.Arrays;
 
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,6 +46,7 @@ public class World implements CommandParser{
     private World(){
         this.LOCATIONS = new ArrayList<>();
         this.init();
+        this.currentLocation = this.LOCATIONS.get(0);
     }
     
     public static World get(){
@@ -149,7 +149,13 @@ public class World implements CommandParser{
         //Parse Location :
         while(input.hasNext() && ftype.equals("L")){
             MapID id = MapID.valueOf(input.next());
-            String[] line = input.nextLine().split("@");
+            input.next();
+            String[] line = input.nextLine().split("@");  
+            line[0] = line[0].strip();
+            line[1] = line[1].strip();
+            line[2] = line[2].strip();
+            line[3] = line[3].strip();
+            
             String desc = line[1];
             Location l = new Location(id, desc);
             boolean nextlocked = false;
@@ -167,11 +173,10 @@ public class World implements CommandParser{
             for(String pers : line[2].split(" ")){ //Persons
                 persons.stream().filter(p->p.getName().toUpperCase().equals(pers)).forEach(p -> l.addPerson(p));
             }
-            for(String it : line[2].split(" ")){ //Items
+            for(String it : line[3].split(" ")){ //Items
                 items.stream().filter(i->i.getNAME().toUpperCase().equals(it)).forEach(i -> l.addItem(i));
             }
-            
-            
+ 
             this.LOCATIONS.add(l);
         
             ftype = input.next();
@@ -181,36 +186,12 @@ public class World implements CommandParser{
         
         
         input.close();
-        for(Item item : items){
+        /*for(Item item : items){
             System.out.println(item.getNAME() + " : " + item.getDes() + " ");
             item.printInter();
-        }
+        }*/
     }
-    
-    public void initMapTest() throws FileNotFoundException{        
-        File file = new File(System.getProperty("user.dir") + "/src/colossalBlitzcronkAdventure/map/map.txt");
-        Scanner input = new Scanner(file);
-        while(input.hasNext()){
-            MapID id = MapID.valueOf(input.next());
-            String desc = "";
-            String s = input.next();
-            while(!s.equals("@")){
-                desc += s + " ";
-                s = input.next();
-            }
-            Location l = new Location(id, desc);
-            String exit = input.next();
-            while(!exit.equals("@")){
-                l.addExits(new Exit(l.getID(), MapID.valueOf(exit)));
-                exit = input.next();
-            }
-            this.LOCATIONS.add(l);
-        }
-        input.close();
         
-        this.currentLocation = this.LOCATIONS.get(0);
-    }
-    
     public Location getLocation(MapID id){
         for(Location l : this.LOCATIONS){
             if(l.getID() == id){
@@ -275,7 +256,7 @@ public class World implements CommandParser{
     @Override
     public void go(List<String> command) {
         if(CommandParser.parseGo(command)){
-            Location goTo = null; //currentLocation.getExit(command.get(1));
+            Location goTo = this.getLocation(MapID.valueOf(command.get(1)));
             if (goTo != null){
                 this.currentLocation = goTo;
             }
@@ -292,7 +273,12 @@ public class World implements CommandParser{
 
     @Override
     public void lookAt(List<String> command) {
-        this.currentLocation.look();
+        if(command.size() == 2){
+            this.currentLocation.look(command);
+        }
+        else{
+            this.currentLocation.look();
+        }
     }
 
     @Override
@@ -319,9 +305,10 @@ public class World implements CommandParser{
 
     @Override
     public void take(List<String> command) {
-        for(String s : command.subList(0, command.size())){
+        for(String s : command.subList(1, command.size())){
             Item item = this.currentLocation.take(s);
             if(item != null){
+                System.out.println("Tou have picked up " + s);
                 Player.getPlayer().addInventory(item);
             }
         }

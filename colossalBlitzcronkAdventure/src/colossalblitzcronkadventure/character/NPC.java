@@ -26,7 +26,7 @@ public class NPC extends Person implements Talkable{
      */
     @Override
     public void print() {
-        System.out.println(this.getName() + this.TALK1 + '\n'+ this.TALK2);
+        System.out.println(this.getName());
     }
 
     /** Get the dialogues int the map from the ID
