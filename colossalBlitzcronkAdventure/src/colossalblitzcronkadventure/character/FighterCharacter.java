@@ -11,19 +11,19 @@ package colossalblitzcronkadventure.character;
 public abstract class FighterCharacter extends Person {
     private final int MAX_PV;
     private int pv;
-    private final int STRENGTH;
+    private int strength;
 
     /** Constructor of object FighterCharacter
      * 
      * @param NAME Name
      * @param MAX_PV Maximum number of PV
-     * @param STRENGTH Strength (Attack)
+     * @param strength Strength (Attack)
      */
-    public FighterCharacter(String NAME, int MAX_PV, int STRENGTH) {
+    public FighterCharacter(String NAME, int MAX_PV, int strength) {
         super(NAME);
         this.MAX_PV = MAX_PV;
         this.pv = this.MAX_PV;
-        this.STRENGTH = STRENGTH;
+        this.strength = strength;
     }
 
     /** Getter of Maximum number of PV
@@ -31,7 +31,7 @@ public abstract class FighterCharacter extends Person {
      * @return MAX_PV
      */
     public int getMAX_PV() {
-        return MAX_PV;
+        return this.MAX_PV;
     }
 
     /** Getter of actual number of PV
@@ -39,15 +39,31 @@ public abstract class FighterCharacter extends Person {
      * @return pv
      */
     public int getPv() {
-        return pv;
+        return this.pv;
     }
 
     /** Getter of the Strength
      * 
-     * @return STRENGTH
+     * @return strength
      */
-    public int getSTRENGTH() {
-        return STRENGTH;
+    public int getStrength() {
+        return this.strength;
+    }
+    
+    /** Method to modify the Health attribute
+     * 
+     * @param val Val to add to health attribute
+     */
+    public void modifHealth(int val){
+        this.pv =+ val;
+    }
+    
+    /** Method to modify the Strength attribute
+     * 
+     * @param val Val to add to strength attribute
+     */
+    public void modifStrength(int val){
+        this.strength += val;
     }
     
     /** Can reduce PV by given value

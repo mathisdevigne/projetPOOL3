@@ -164,7 +164,13 @@ public class World implements CommandParser{
 
     @Override
     public void use(List<String> command) {
-        Player.getPlayer().use(command.get(1));
+        if(command.size() == 2){
+            Player.getPlayer().use(command.get(1));
+        }
+        else{
+            Player.getPlayer().use(command.get(1), command.get(2));
+        }
+        
     }
 
     @Override
