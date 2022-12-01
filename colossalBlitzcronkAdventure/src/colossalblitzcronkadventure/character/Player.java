@@ -211,12 +211,18 @@ public class Player extends FighterCharacter implements Talkable{
                 NPC pe = (NPC) pers.get();
                 remInventory(item1);
                 pe.changeTalk();
-                this.upIntelligence(2);
-                for(Location l : World.get().getLOCATIONS()){
-                    if(l.isExit(item1.getInterPers(pe).name()) && l.getExit(item1.getInterPers(pe)) instanceof LockedExit){
-                        ((LockedExit)l.getExit(item1.getInterPers(pe))).unLock();
-                    }
-                } 
+                if(pe.getName().equals("Dr.Mybak")){
+                    pe.talk();
+                    World.get().setEnd();
+                }else{
+                    this.upIntelligence(2);
+                        for(Location l : World.get().getLOCATIONS()){
+                            if(l.isExit(item1.getInterPers(pe).name()) && l.getExit(item1.getInterPers(pe)) instanceof LockedExit){
+                                ((LockedExit)l.getExit(item1.getInterPers(pe))).unLock();
+                            }
+                        }  
+                }
+                
             }
         }
         

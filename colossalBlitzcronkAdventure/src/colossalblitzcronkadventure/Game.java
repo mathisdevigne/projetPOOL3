@@ -23,15 +23,23 @@ public class Game {
             if(Player.getPlayer().fightAgainst != null){
                 this.fight();
             }
+            if(this.WORLD.isEnd()){
+                break;
+            }
             this.WORLD.print();
         }
+        this.finish();
     }
     
-    public void fight(){
+    private void fight(){
         while(Player.getPlayer().fightAgainst != null && !this.WORLD.scanParse()){
             if(Player.getPlayer().fightAgainst != null){
                 this.WORLD.printFight(Player.getPlayer());
             }
         }
+    }
+    
+    private void finish(){
+        
     }
 }

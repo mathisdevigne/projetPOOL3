@@ -42,6 +42,7 @@ public class World implements CommandParser{
         this.LOCATIONS = new ArrayList<>();
         this.init();
         this.currentLocation = this.LOCATIONS.get(0);
+        this.end = false;
     }
     
     public static World get(){
@@ -233,6 +234,14 @@ public class World implements CommandParser{
             System.out.println(item.getNAME() + " : " + item.getDes() + " ");
             item.printInter();
         }*/
+    }
+
+    public boolean isEnd() {
+        return this.end;
+    }
+    
+    public void setEnd(){
+        this.end = true;
     }
            
     public void print(){
@@ -456,6 +465,9 @@ public class World implements CommandParser{
                 p.fightAgainst.changeTalk();
                 p.fightAgainst.talk();
                 this.currentLocation.suppPerson(p.fightAgainst);
+                if(p.fightAgainst.getName().equals("Dr.Voktor")){
+                    this.end = true;
+                }
                 p.fightAgainst = null;
             }else{
                 Player.getPlayer().takeDamage(Player.getPlayer().fightAgainst.getStrength());
