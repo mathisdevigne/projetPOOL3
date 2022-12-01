@@ -8,6 +8,8 @@ import colossalblitzcronkadventure.World;
 import colossalblitzcronkadventure.items.Consumable;
 import colossalblitzcronkadventure.items.Item;
 import colossalblitzcronkadventure.items.Weapon;
+import colossalblitzcronkadventure.map.Location;
+import colossalblitzcronkadventure.map.LockedExit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -206,6 +208,11 @@ public class Player extends FighterCharacter implements Talkable{
                 NPC pe = (NPC) pers.get();
                 remInventory(item1);
                 pe.changeTalk();
+                for(Location l : World.get().getLOCATIONS()){
+                    if(l.isExit(item1.getInterPers(pe).name()) && l.getExit(item1.getInterPers(pe)) instanceof LockedExit){
+                        ((LockedExit)l.getExit(item1.getInterPers(pe))).unLock();
+                    }
+                } 
             }
         }
         

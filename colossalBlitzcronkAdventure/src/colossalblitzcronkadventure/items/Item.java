@@ -6,6 +6,7 @@ package colossalblitzcronkadventure.items;
 
 import colossalblitzcronkadventure.character.Person;
 import colossalblitzcronkadventure.command.Lookable;
+import colossalblitzcronkadventure.map.MapID;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +22,7 @@ public abstract class Item implements Lookable {
     private final String DESCRIPTION;
     
     private Map<String, Item> interactions; 
-    private List<Person> interactionsNpc; 
+    private Map<Person, MapID> interactionsNpc; 
     
     /** Constructor of object Item
      *
@@ -31,7 +32,7 @@ public abstract class Item implements Lookable {
     public Item(String name, String description){
         this.NAME = name;
         this.interactions = new HashMap<>();
-        this.interactionsNpc = new ArrayList<>();
+        this.interactionsNpc = new HashMap<>();
         this.DESCRIPTION = description;
         
     }
@@ -49,9 +50,9 @@ public abstract class Item implements Lookable {
      *
      * @param p add this person
      */
-    public void addPInterPers(Person p){
+    public void addPInterPers(Person p, MapID id){
         if(p != null){
-            this.interactionsNpc.add(p);
+            this.interactionsNpc.put(p, id);
         }
     }
 
@@ -71,6 +72,10 @@ public abstract class Item implements Lookable {
         return this.DESCRIPTION;
     }
     
+    public MapID getInterPers(Person pers){
+        return this.interactionsNpc.get(pers);
+    }
+    
     /** Getter of the Interaction of this Item
      *
      * @param itemName Name of the Item's wanted interaction
@@ -86,7 +91,7 @@ public abstract class Item implements Lookable {
      * @return Boolean : True if there is an Interaction, or false is there isn't
      */
     public boolean hasInterPers(Person pers){
-        return interactionsNpc.contains(pers);
+        return interactionsNpc.containsKey(pers);
     }
     
     /** Boolean to know if the Item has an Interaction
@@ -106,7 +111,7 @@ public abstract class Item implements Lookable {
         for(Map.Entry<String, Item> test : this.interactions.entrySet()){
             System.out.println(this.getNAME() + " + " + test.getKey() + " -> " + test.getValue().getNAME());
         } 
-        for(Person p : this.interactionsNpc){
+        for(Person p : this.interactionsNpc.keySet()){
             p.print();
         }
     }

@@ -14,7 +14,7 @@ public enum MapID {
     SEWER("Sewer"),
     DEPTH("Depth"),
     ENTRESOL("Entresol"),
-    FACETOVER("Facetover"),
+    PILTOVER("Piltover"),
     OFFICE("Office"),
     UNDERCITY("UnderCity");
     

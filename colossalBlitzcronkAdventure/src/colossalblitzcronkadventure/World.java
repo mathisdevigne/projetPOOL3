@@ -75,7 +75,6 @@ public class World implements CommandParser{
                 else{
                     persons.add(new Enemy(name, pv, str, MapID.valueOf(lock), all[0], all[1]));
                 }
-                input.nextLine();
             }
             else if(type.equals("N")){
                 String[] all = input.nextLine().replace("\\n", "\n").split("@");
@@ -159,11 +158,19 @@ public class World implements CommandParser{
             s = input.next();
             while(!s.equals("@")){ //Interaction person
                 String name = s;
+                MapID id;
+                s = input.next();
+                if(s.equals("NULL")){
+                    id = null;
+                }
+                else{
+                    id = MapID.valueOf(s);
+                }
                 Optional<Person> pers = persons.stream().filter(p -> p.getName().equalsIgnoreCase(name)).findAny();
                 if(pers.isPresent()){
                     for(Item item : items){
                         if(item.getNAME().equals(itemName)){
-                            item.addPInterPers(pers.get());
+                            item.addPInterPers(pers.get(), id);
                         }
                     }
                 }
@@ -191,6 +198,7 @@ public class World implements CommandParser{
                 }
                 else if(nextlocked){
                     l.addExits(new LockedExit(id,MapID.valueOf(ex)));
+                    nextlocked = false;
                 }
                 else{
                     l.addExits(new Exit(id,MapID.valueOf(ex)));
@@ -283,7 +291,11 @@ public class World implements CommandParser{
             }        
         return false;
     }
-    
+
+    public List<Location> getLOCATIONS() {
+        return this.LOCATIONS;
+    }
+      
     public Location getCurrentLocation(){
         return this.currentLocation;
     }
@@ -426,7 +438,11 @@ public class World implements CommandParser{
             if(p.fightAgainst.getPv() < 1){
                 System.out.println("You defeated " + p.fightAgainst.getName());
                 if(p.fightAgainst.getLOCKEDLOCATION() != null){
-                    ((LockedExit)this.currentLocation.getExit(p.fightAgainst.getLOCKEDLOCATION())).unLock();
+                    for(Location l : this.LOCATIONS){
+                        if(l.isExit(p.fightAgainst.getLOCKEDLOCATION().name()) && l.getExit(p.fightAgainst.getLOCKEDLOCATION()) instanceof LockedExit){
+                            ((LockedExit)l.getExit(p.fightAgainst.getLOCKEDLOCATION())).unLock();
+                        }
+                    }   
                 } 
                 p.fightAgainst.changeTalk();
                 p.fightAgainst.talk();
