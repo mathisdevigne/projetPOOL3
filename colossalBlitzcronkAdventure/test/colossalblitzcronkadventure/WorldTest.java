@@ -58,7 +58,7 @@ public class WorldTest {
         System.out.println("go");
         List<String> command = new ArrayList<>();
         command.add("GO");
-        w.
+        
     }
 
     /**
