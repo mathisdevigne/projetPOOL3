@@ -197,18 +197,12 @@ public class Player extends FighterCharacter implements Talkable{
         }
         else{
             if(item1.hasInterItem(obj2)){
-                System.out.print("Interaction possible, would you like to fuse ? (y/n) : ");
-                Scanner sc = new Scanner(System.in);
-                String res = sc.next();
-                if("y".equals(res)){
-                    Item fusedItem = item1.getInterItem(obj2);
-                    remInventory(item1);
-                    remInventory(item2);
-                    addInventory(fusedItem);
-                }
-                sc.close();
+                Item fusedItem = item1.getInterItem(obj2);
+                remInventory(item1);
+                remInventory(item2);
+                addInventory(fusedItem);
             }
-            else if(item1.hasInterPers(pers.get())){
+            else if(pers.isPresent() && item1.hasInterPers(pers.get())){
                 NPC pe = (NPC) pers.get();
                 remInventory(item1);
                 pe.changeTalk();

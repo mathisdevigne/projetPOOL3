@@ -13,12 +13,12 @@ P N Hurgo Hurgo : Oh you are with Varvock this time? Sorry for last time buddy, 
 P N Zuck Zuck : Hi, how are you today?\nBlitzcronk : Fine and you\nZuck : I'm zuckin' as always! @Zuck : You need some slime ? There you are!\nBlitzcronk : Thanks *beep*\n you @
 P N Heimerdonger Heimerdonger : Hi, I can repair you if you want.\nBlitzcronk Ok yes please.\nHeimerdonger : There you are! @Heimerdonger : *dong* *dong* @
 P N Dr.Voktor Dr. Voktor : Blitzcronk? What are you doing here?\nBlitzcronk : I was *bop* looking for you doctor.\nDr. Voktor : But I don't want you go away now!\nBlitzcronk : No. *beep beep*\nDr. Voktor : Ok I will fight you then AHAH. @ @
-I W Sword 0 A rusty sword @ @ @
-I W Stick 0 Just a stick, what did you expect ? @ String FishingRode @ @
-I W SteelHand 10 The missing hand of Blitz @ @ @
-I M Fish null A fish @ @ Pouitch @
-I M FishingRode Fish A simple FishingRode @ @ @
-I M String null A thin String @ @ @
+I W SWORD 0 A rusty sword @ @ @
+I W STICK 0 Just a stick, what did you expect ? @ STRING FISHINGRODE @ @
+I W STEELHAND 10 The missing hand of Blitz @ @ @
+I M FISH null A fish @ @ Pouitch @
+I M FISHINGRODE Fish A simple FishingRode @ @ @
+I M STRING null A thin String @ @ @
 I C HealthPotion H 10 Healing potion @ @ @
 L DUMP @ LOCKED SEWER @ Desc @ SLIME @ SWORD STICK STEELHAND HEALTHPOTION
 L SEWER @ DUMP DEPTH LOCKED UNDERCITY @ Desc @ POUITCH @ STRING @

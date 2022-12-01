@@ -148,6 +148,11 @@ public class World implements CommandParser{
                         item.addInter(fusingItem, fItem);
                     }
                 }
+                for(Item item : items){
+                    if(item.getNAME().equals(itemName)){
+                        item.printInter();
+                    }
+                }
             }
             s = input.next();
             while(!s.equals("@")){ //Interaction person
