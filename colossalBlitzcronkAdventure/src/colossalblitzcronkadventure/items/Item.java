@@ -44,6 +44,14 @@ public abstract class Item implements Lookable {
     public void addInter(String fusingItem, Item fusedItem){
         this.interactions.put(fusingItem, fusedItem);
     }
+    
+    /** Add an Interaction between two object in this Item
+     *
+     * @param p add this person
+     */
+    public void addPInterPers(Person p){
+        this.interactionsNpc.add(p);
+    }
 
     /** Getter of the name of the Item
      *
@@ -95,7 +103,11 @@ public abstract class Item implements Lookable {
         System.out.println("INTERACTIONS : ");
         for(Map.Entry<String, Item> test : this.interactions.entrySet()){
             System.out.println(this.getNAME() + " + " + test.getKey() + " -> " + test.getValue().getNAME());
-        } }
+        } 
+        for(Person p : this.interactionsNpc){
+            p.print();
+        }
+    }
     
     /** Method to use an Item
      *

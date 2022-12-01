@@ -154,21 +154,15 @@ public class World implements CommandParser{
                         item.addInter(fusingItem, fItem);
                     }
                 }
-                for(Item item : items){
-                    if(item.getNAME().equals(itemName)){
-                        item.printInter();
-                    }
-                }
             }
             s = input.next();
             while(!s.equals("@")){ //Interaction person
-                System.out.println(s);
                 String name = s;
                 Optional<Person> pers = persons.stream().filter(p -> p.getName().equalsIgnoreCase(name)).findAny();
                 if(pers.isPresent()){
                     for(Item item : items){
                         if(item.getNAME().equals(itemName)){
-                            item.hasInterPers(pers.get());
+                            item.addPInterPers(pers.get());
                         }
                     }
                 }
