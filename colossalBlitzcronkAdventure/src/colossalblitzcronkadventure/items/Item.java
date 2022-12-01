@@ -50,7 +50,9 @@ public abstract class Item implements Lookable {
      * @param p add this person
      */
     public void addPInterPers(Person p){
-        this.interactionsNpc.add(p);
+        if(p != null){
+            this.interactionsNpc.add(p);
+        }
     }
 
     /** Getter of the name of the Item

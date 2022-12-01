@@ -46,36 +46,7 @@ public class ItemTest {
         Person p = null;
         Item instance = null;
         instance.addPInterPers(p);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getNAME method, of class Item.
-     */
-    @Test
-    public void testGetNAME() {
-        System.out.println("getNAME");
-        Item instance = null;
-        String expResult = "";
-        String result = instance.getNAME();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getDes method, of class Item.
-     */
-    @Test
-    public void testGetDes() {
-        System.out.println("getDes");
-        Item instance = null;
-        String expResult = "";
-        String result = instance.getDes();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.hasInterItem(null)
     }
 
     /**
@@ -123,17 +94,6 @@ public class ItemTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of printInter method, of class Item.
-     */
-    @Test
-    public void testPrintInter() {
-        System.out.println("printInter");
-        Item instance = null;
-        instance.printInter();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of use method, of class Item.
@@ -159,43 +119,6 @@ public class ItemTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of look method, of class Item.
-     */
-    @Test
-    public void testLook_List() {
-        System.out.println("look");
-        List<String> command = null;
-        Item instance = null;
-        instance.look(command);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of look method, of class Item.
-     */
-    @Test
-    public void testLook_0args() {
-        System.out.println("look");
-        Item instance = null;
-        instance.look();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    public class ItemImpl extends Item {
-
-        public ItemImpl() {
-            super("", "");
-        }
-
-        public void use() {
-        }
-
-        public void use(Item item) {
-        }
-    }
+    
     
 }
