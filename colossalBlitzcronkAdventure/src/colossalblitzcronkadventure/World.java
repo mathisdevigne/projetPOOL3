@@ -236,7 +236,7 @@ public class World implements CommandParser{
                     break;
                 case "LEAVES":
                     this.leaves();
-                    return false;
+                    return true;
                 case "HELP":
                     CommandParser.help(commandSplit);
                     break;
@@ -384,6 +384,8 @@ public class World implements CommandParser{
         if(CommandParser.parseIsFighting(p)){
             p.fightAgainst.takeDamage(p.getStrength());
             if(p.fightAgainst.getPv() < 1){
+                System.out.println("You defeated " + p.fightAgainst.getName());
+                this.currentLocation.suppPerson(p.fightAgainst);
                 p.fightAgainst = null;
             }
         }

@@ -70,6 +70,15 @@ public class Location implements Lookable{
         this.PERSONS.add(person);
     }
     
+    public void suppPerson(Person person){
+        /*for(Person p : this.PERSONS){
+            if(person.getName().equals(p.getName())){
+                 this.PERSONS.remove(person);
+            } 
+        }*/
+        this.PERSONS.remove(person);
+    }
+    
     /**
      * Add a Item to the list of Item in the Location 
      * @param item the new item to add in the list

@@ -28,8 +28,10 @@ public class Game {
     }
     
     public void fight(){
-        while(this.WORLD.scanParse()){
-            this.WORLD.printFight(Player.getPlayer());
+        while(Player.getPlayer().fightAgainst != null && !this.WORLD.scanParse()){
+            if(Player.getPlayer().fightAgainst != null){
+                this.WORLD.printFight(Player.getPlayer());
+            }
         }
     }
 }
