@@ -9,14 +9,7 @@ package colossalblitzcronkadventure.character;
  * @author theodusehu
  */
 public interface Talkable {
-    
-    /** Allow to talk using the DIALOGUES Map from the Person class
-     *
-     * @param id
-     *
-     */
-    public void talkId(int id);
-    
+        
     /**
      * talk
      */

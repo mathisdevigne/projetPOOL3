@@ -7,14 +7,6 @@ package colossalblitzcronkadventure.character;
 import colossalblitzcronkadventure.command.Lookable;
 import java.util.List;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /** Represent a Person, is inherited by FighterCharacter and NPC
  *
  * @author theodusehu
@@ -52,27 +44,4 @@ public abstract class Person implements Lookable{
         this.look();
     }    
     
-    /** Map of the different dialogues from the file dialogues.txt
-     * 
-     */
-    static final Map<Integer, String> DIALOGUES = new HashMap<>();
-    static{
-        try {
-            Scanner sc = new Scanner(new File(System.getProperty("user.dir") + "/src/colossalBlitzcronkAdventure/character/dialogues.txt"));
-            while(sc.hasNext()){
-                int Id = sc.nextInt();
-                String sentence = "";
-                String s = sc.next();
-                while(!s.equals("@")){
-                    sentence += s + " ";
-                    s = sc.next();
-                }
-                DIALOGUES.put(Id, sentence);
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(NPC.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-
 }

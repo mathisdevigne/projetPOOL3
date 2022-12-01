@@ -68,11 +68,12 @@ public class World implements CommandParser{
                 int pv = input.nextInt();
                 int str = input.nextInt();
                 String lock = input.next();
+                String[] all = input.nextLine().replace("\\n", "\n").split("@");
                 if(lock.equals("NULL")){
-                    persons.add(new Enemy(name, pv, str, null));
+                    persons.add(new Enemy(name, pv, str, null, all[0], all[1]));
                 }
                 else{
-                    persons.add(new Enemy(name, pv, str, MapID.valueOf(lock)));
+                    persons.add(new Enemy(name, pv, str, MapID.valueOf(lock), all[0], all[1]));
                 }
                 input.nextLine();
             }
@@ -279,11 +280,7 @@ public class World implements CommandParser{
                 default:
                     System.out.println("Command " + commandSplit.get(0) + " not in the command list, type HELP if you need.");
                     break;
-            }
-        if(Player.getPlayer().fightAgainst != null){
-            Player.getPlayer().takeDamage(Player.getPlayer().fightAgainst.getStrength());
-            System.out.println(Player.getPlayer().fightAgainst.getName() +" attacked, -"+Player.getPlayer().fightAgainst.getStrength()+"HP");
-        }
+            }        
         return false;
     }
     
@@ -380,7 +377,7 @@ public class World implements CommandParser{
         System.out.println("================================================================");
         System.out.println();
         p.fightAgainst.print();
-        System.out.println("While fighting, you can uses thoses commannds :\nATTACK\nHEAL\nLEAVES");
+        System.out.println("While fighting, you can uses thoses commands :\n - ATTACK\n - HEAL\n - LEAVES");
     }
 
     @Override
@@ -391,6 +388,7 @@ public class World implements CommandParser{
             Optional<Person> optp = currentLocation.getPERSONS().stream().filter((Person p) -> (p.getClass() == Enemy.class) && (p.getName().toUpperCase().equals(enemyName))).findAny();
             if(optp.isPresent()){
                 currPlayer.fightAgainst = (Enemy)optp.get();
+                currPlayer.fightAgainst.talk();
                 printFight(currPlayer);
             }
         }
@@ -427,11 +425,16 @@ public class World implements CommandParser{
             p.fightAgainst.takeDamage(p.getStrength());
             if(p.fightAgainst.getPv() < 1){
                 System.out.println("You defeated " + p.fightAgainst.getName());
-                if(p.fightAgainst.getLockedLocation() != null){
-                    ((LockedExit)this.currentLocation.getExit(p.fightAgainst.getLockedLocation())).unLock();
+                if(p.fightAgainst.getLOCKEDLOCATION() != null){
+                    ((LockedExit)this.currentLocation.getExit(p.fightAgainst.getLOCKEDLOCATION())).unLock();
                 } 
+                p.fightAgainst.changeTalk();
+                p.fightAgainst.talk();
                 this.currentLocation.suppPerson(p.fightAgainst);
                 p.fightAgainst = null;
+            }else{
+                Player.getPlayer().takeDamage(Player.getPlayer().fightAgainst.getStrength());
+                System.out.println(Player.getPlayer().fightAgainst.getName() +" attacked, -"+Player.getPlayer().fightAgainst.getStrength()+"HP");
             }
         }
     }

@@ -5,14 +5,18 @@
 package colossalblitzcronkadventure.character;
 
 import colossalblitzcronkadventure.map.MapID;
+import java.util.ArrayList;
+import java.util.List;
 
 /** Represent and Enemy
  *
  * @author theodusehu
  */
-public class Enemy extends FighterCharacter{
+public class Enemy extends FighterCharacter implements Talkable{
 
-    private final MapID lockedLocation;
+    private final MapID LOCKEDLOCATION;
+    private final List<String> TALKS;
+    private String actualTalk;
     
     /** Constructor of object Ennemy
      * 
@@ -21,21 +25,36 @@ public class Enemy extends FighterCharacter{
      * @param STRENGTH Strength (Attack) of the Ennemy
      * @param ID ID of the Location that is unlock when defeated 
      */
-    public Enemy(String NAME, int MAX_PV, int STRENGTH, MapID ID) {
+    public Enemy(String NAME, int MAX_PV, int STRENGTH, MapID ID, String t1, String t2) {
         super(NAME, MAX_PV, STRENGTH);
-        this.lockedLocation = ID;
+        this.LOCKEDLOCATION = ID;
+        this.TALKS = new ArrayList<>();
+        this.TALKS.add(t1);
+        this.TALKS.add(t2);
+        this.actualTalk = t1;
     }
     /** 
      * Return the MapID of the Location that is locked by it
      * @return a MapID
      */
-    public MapID getLockedLocation() {
-        return lockedLocation;
+    public MapID getLOCKEDLOCATION() {
+        return this.LOCKEDLOCATION;
     }
-
+    
     @Override
     public void print() {
         System.out.println(this.getName() + ": " + this.getPv() + "/" + this.getMAX_PV());
     }
     
+    public void changeTalk(){
+        int next = this.TALKS.indexOf(this.actualTalk)+1;
+        if(next < this.TALKS.size()){
+            this.actualTalk = this.TALKS.get(1);
+        }
+    }
+
+    @Override
+    public void talk() {
+        System.out.println(this.actualTalk);
+    }
 }

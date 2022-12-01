@@ -4,24 +4,29 @@
  */
 package colossalblitzcronkadventure.character;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /** Represent an NPC
  *
  * @author theodusehu
  */
 public class NPC extends Person implements Talkable{
-    private String TALK1;
-    private String TALK2;
+    private final List<String> TALKS;
     private String actualTalk;
     
     
     /** Constructor of object NPC
      * @param NAME Name of NPC
+     * @param t1
+     * @param t2
      */
     public NPC(String NAME, String t1, String t2) {
         super(NAME);
-        this.TALK1 = t1;
-        this.actualTalk = TALK1;
-        this.TALK2 = t2;
+        this.TALKS = new ArrayList<>();
+        this.TALKS.add(t1);
+        this.TALKS.add(t2);
+        this.actualTalk = t1;
     }
 
     /** Print the name of NPC
@@ -38,14 +43,6 @@ public class NPC extends Person implements Talkable{
     public void look(){
         this.talk();
     }
-
-    /** Get the dialogues int the map from the ID
-     * @param id ID of the dialogue in the map
-     */
-    @Override
-    public void talkId(int id) {
-        System.out.println(NPC.DIALOGUES.get(id));
-    }
     
     @Override
     public void talk(){
@@ -53,7 +50,10 @@ public class NPC extends Person implements Talkable{
     }
     
     public void changeTalk(){
-        this.actualTalk = this.TALK2;
+        int next = this.TALKS.indexOf(this.actualTalk)+1;
+        if(next < this.TALKS.size()){
+            this.actualTalk = this.TALKS.get(1);
+        }
     }
     
 }
