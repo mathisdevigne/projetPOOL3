@@ -169,6 +169,7 @@ public class Player extends FighterCharacter implements Talkable{
                     }
                 }
                 else{
+                    item.use();
                     if(item instanceof Weapon){
                          System.out.println("You can't equip the weapon, first desequip the one you have.");
                     }

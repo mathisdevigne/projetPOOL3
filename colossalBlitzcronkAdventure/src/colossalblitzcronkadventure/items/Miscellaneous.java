@@ -5,7 +5,6 @@
 package colossalblitzcronkadventure.items;
 
 import colossalblitzcronkadventure.character.Player;
-import java.util.List;
 
 /** Reprend a Miscelleneous Item
  *
@@ -19,15 +18,11 @@ public class Miscellaneous extends Item{
      * 
      * @param name Name of the Item
      * @param description Description of the Item
-     * @param resName Name of the Item get by using this Item
+     * @param resItem Name of the Item get by using this Item
      */
-    public Miscellaneous(String name, String description, String resName) {
+    public Miscellaneous(String name, String description, Item resItem) {
         super(name, description);
-        List<Item> itemList = initItems.getList();
-        for(Item item : itemList){
-            if(item.getNAME().equals(resName))
-                this.resItem = item;
-        }
+        this.resItem = resItem;
     }
 
     @Override
@@ -36,6 +31,9 @@ public class Miscellaneous extends Item{
             Player.getPlayer().addInventory(resItem);
             System.out.println("You've obtain " + resItem.getNAME() +".");
             Player.getPlayer().remInventory(this);
+        }
+        else{
+            System.out.println("Machin null");
         }
     }
 

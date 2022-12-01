@@ -90,6 +90,7 @@ public class World implements CommandParser{
             int val = 0;
             String consType = "";
             String resName = "";
+            Item resItem = null;
             if("W".equals(type)){
                 str = input.nextInt();
             }
@@ -99,6 +100,11 @@ public class World implements CommandParser{
             }
             if("M".equals(type)){
                 resName = input.next();
+                for(Item item : items){
+                    if(item.getNAME().equals(resName)){
+                        resItem = item;
+                    }
+                }
             }
             String description = "";
             String s = input.next();
@@ -108,7 +114,7 @@ public class World implements CommandParser{
             }
             switch(type){
                 case "W" : items.add(new Weapon(itemName, description ,str)); break;
-                case "M" : items.add(new Miscellaneous(itemName, description,resName)); break;
+                case "M" : items.add(new Miscellaneous(itemName, description, resItem)); break;
                 case "C" : items.add(new Consumable(itemName, description, consType, val)); break;
             }
             input.nextLine();

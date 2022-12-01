@@ -17,7 +17,7 @@ I W SWORD 0 A rusty sword @ @ @
 I W STICK 0 Just a stick, what did you expect ? @ STRING FISHINGRODE @ @
 I W STEELHAND 10 The missing hand of Blitz @ @ @
 I M FISH null A fish @ @ Pouitch @
-I M FISHINGRODE Fish A simple FishingRode @ @ @
+I M FISHINGRODE FISH A simple FishingRode @ @ @
 I M STRING null A thin String @ @ @
 I C HealthPotion H 10 Healing potion @ @ @
 L DUMP @ LOCKED SEWER @ Desc @ SLIME @ SWORD STICK STEELHAND HEALTHPOTION
