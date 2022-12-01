@@ -30,6 +30,7 @@ import java.util.Arrays;
 
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -211,17 +212,39 @@ public class World implements CommandParser{
     }
     
     @Override
-    public boolean parse(){
+    public boolean scanParse(){
         for(String command : new ArrayList<>(Arrays.asList(scan.nextLine().replaceAll("^ +| +$|( )+", "$1").toUpperCase().split(";")))){
             System.out.println("Commande : " +command +";");
             List<String> commandSplit = new ArrayList<>(Arrays.asList(command.split(" ")));
             if(" ".equals(commandSplit.get(0))){
                 commandSplit.remove(0);
             }
-            
-            switch (commandSplit.get(0)) {
+            boolean stop = parse(commandSplit);
+            if(stop){
+                return true;
+            }
+        }
+        return false;
+        
+    }       
+        
+        
+    public boolean parse(List<String> commandSplit){
+        switch (commandSplit.get(0)) {
                 case "GO":
                     this.go(commandSplit);
+                    break;
+                case "FIGHT":
+                    this.fight(commandSplit);
+                    break;
+                case "ATTACK":
+                    this.attack();
+                    break;
+                case "HEAL":
+                    this.heal();
+                    break;
+                case "LEAVES":
+                    this.leaves();
                     break;
                 case "HELP":
                     CommandParser.help(commandSplit);
@@ -233,7 +256,6 @@ public class World implements CommandParser{
                     return this.quit(commandSplit);
                 case "TAKE":
                     this.take(commandSplit);
-
                     break;
                 case "USE":
                     this.use(commandSplit);
@@ -242,12 +264,8 @@ public class World implements CommandParser{
                     System.out.println("Command " + commandSplit.get(0) + " not in the command list, type HELP if you need.");
                     break;
             }
-        }
         return false;
-        
-    }       
-        
-        
+    }
     
     @Override
     public void go(List<String> command) {
@@ -309,6 +327,52 @@ public class World implements CommandParser{
             }
             else{
                 System.out.println("Thers is nothing like this here");
+            }
+        }
+    }
+    
+    public void printFight(Player p){
+        p.fightAgainst.print();
+        p.print();
+        System.out.println("While fighting, you can uses thoses commannds :\nATTACK\nHEAL\nLEAVES");
+    }
+
+    @Override
+    public void fight(List<String> command) {
+        Player currPlayer = Player.getPlayer();
+        if(CommandParser.parseFight(command, currPlayer)){
+            String enemyName = command.get(1);
+            Optional<Person> optp = currentLocation.getPERSONS().stream().filter((Person p) -> (p.getClass() == Enemy.class) && (p.getName().equals(enemyName))).findAny();
+            if(optp.isPresent()){
+                currPlayer.fightAgainst = (Enemy)optp.get();
+                printFight(currPlayer);
+            }
+        }
+    }
+
+    @Override
+    public void heal() {
+        Player p = Player.getPlayer();
+        if(CommandParser.parseIsFighting(p)){
+            p.modifHealth(p.getStrength());
+        }
+    }
+
+    @Override
+    public void leaves() {
+        Player p = Player.getPlayer();
+        if(CommandParser.parseIsFighting(p)){
+            p.fightAgainst = null;
+        }
+    }
+
+    @Override
+    public void attack() {
+        Player p = Player.getPlayer();
+        if(CommandParser.parseIsFighting(p)){
+            p.fightAgainst.takeDamage(p.getStrength());
+            if(p.fightAgainst.getPv() < 1){
+                p.fightAgainst = null;
             }
         }
     }

@@ -19,6 +19,7 @@ public class Player extends FighterCharacter implements Talkable{
     private static final int DEF_INT = 0;
     private int intelligence;
     private final List<Item> INVENTORY = new ArrayList<>();
+    public Enemy fightAgainst;
     private Item hand = null;    
     
     private static final Player BLITZCRONK = new Player("Blitzcrong", 20, 0);
@@ -30,6 +31,7 @@ public class Player extends FighterCharacter implements Talkable{
     */
     private Player(String NAME, int MAX_PV, int STRENGTH) {
         super(NAME, MAX_PV, STRENGTH);
+        this.fightAgainst = null;
         this.intelligence = DEF_INT;
     }
 

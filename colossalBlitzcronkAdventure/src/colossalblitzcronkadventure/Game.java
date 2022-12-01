@@ -17,7 +17,7 @@ public class Game {
     
     public void play(){
         this.WORLD.print();
-        while(!this.WORLD.parse()){
+        while(!this.WORLD.scanParse()){
             this.WORLD.print();
         }
     }
