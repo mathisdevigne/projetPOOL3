@@ -21,6 +21,7 @@ public class ItemTest {
     
     @Before
     public void setUp() {
+        
     }
 
     /**
@@ -46,7 +47,7 @@ public class ItemTest {
         Person p = null;
         Item instance = null;
         instance.addPInterPers(p);
-        instance.hasInterItem(null)
+        instance.hasInterItem(null);
     }
 
     /**
