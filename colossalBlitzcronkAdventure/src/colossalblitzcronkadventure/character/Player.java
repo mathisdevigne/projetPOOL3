@@ -59,6 +59,9 @@ public class Player extends FighterCharacter implements Talkable{
      */
     public void upIntelligence(int val){
         this.intelligence =+ val;
+        if(this.intelligence%2 == 0){
+            this.modifStrength(1);
+        }
     }
     
     /** Getter of an Item from the INVENTORY
@@ -208,6 +211,7 @@ public class Player extends FighterCharacter implements Talkable{
                 NPC pe = (NPC) pers.get();
                 remInventory(item1);
                 pe.changeTalk();
+                this.upIntelligence(2);
                 for(Location l : World.get().getLOCATIONS()){
                     if(l.isExit(item1.getInterPers(pe).name()) && l.getExit(item1.getInterPers(pe)) instanceof LockedExit){
                         ((LockedExit)l.getExit(item1.getInterPers(pe))).unLock();

@@ -16,7 +16,8 @@ public enum MapID {
     ENTRESOL("Entresol"),
     PILTOVER("Piltover"),
     OFFICE("Office"),
-    UNDERCITY("UnderCity");
+    UNDERCITY("UnderCity"),
+    END("The END");
     
     
     public String name;
