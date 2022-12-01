@@ -116,8 +116,12 @@ public class Location implements Lookable{
      * @param id the id of the destination 
      * @return the MapID of the destination
      */
-    public MapID getExit(MapID id){
+    public MapID getExitID(MapID id){
         return this.EXITS.get(id).cross();
+    }
+    
+    public Exit getExit(MapID id){
+        return this.EXITS.get(id);
     }
 
     /**

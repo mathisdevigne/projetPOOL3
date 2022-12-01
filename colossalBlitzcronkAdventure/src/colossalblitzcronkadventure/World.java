@@ -14,21 +14,14 @@ import colossalblitzcronkadventure.items.Consumable;
 import colossalblitzcronkadventure.items.Item;
 import colossalblitzcronkadventure.items.Miscellaneous;
 import colossalblitzcronkadventure.items.Weapon;
-
-import colossalblitzcronkadventure.items.initItems;
-
 import colossalblitzcronkadventure.map.Exit;
-
 import colossalblitzcronkadventure.map.Location;
 import colossalblitzcronkadventure.map.LockedExit;
 import colossalblitzcronkadventure.map.MapID;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
 import java.util.Arrays;
-
-
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -138,7 +131,8 @@ public class World implements CommandParser{
             if(type.equals("E")){
                 int pv = input.nextInt();
                 int str = input.nextInt();
-                persons.add(new Enemy(name, pv, str));
+                String lock = input.next();
+                persons.add(new Enemy(name, pv, str, MapID.valueOf(lock)));
                 input.nextLine();
             }
             else if(type.equals("N")){
@@ -277,7 +271,7 @@ public class World implements CommandParser{
     public void go(List<String> command) {
         if(CommandParser.parseGo(command)){
             if(this.currentLocation.isExit(command.get(1))){
-                MapID goTo = this.currentLocation.getExit(MapID.valueOf(command.get(1)));
+                MapID goTo = this.currentLocation.getExitID(MapID.valueOf(command.get(1)));
                 if (goTo != null){
                     this.currentLocation = this.getLocation(command.get(1));
                 }
@@ -296,7 +290,12 @@ public class World implements CommandParser{
     @Override
     public void lookAt(List<String> command) {
         if(command.size() == 2){
-            this.currentLocation.look(command);
+            if(command.get(1).equals(Player.getPlayer().getName().toUpperCase())){
+                Player.getPlayer().printInventory();
+            }
+            else{
+                this.currentLocation.look(command); 
+            } 
         }
         else{
             this.currentLocation.look();
@@ -385,6 +384,7 @@ public class World implements CommandParser{
             p.fightAgainst.takeDamage(p.getStrength());
             if(p.fightAgainst.getPv() < 1){
                 System.out.println("You defeated " + p.fightAgainst.getName());
+                ((LockedExit)this.currentLocation.getExit(p.fightAgainst.getLockedLocation())).unLock();
                 this.currentLocation.suppPerson(p.fightAgainst);
                 p.fightAgainst = null;
             }
