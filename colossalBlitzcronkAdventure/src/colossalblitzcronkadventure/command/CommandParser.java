@@ -26,7 +26,7 @@ public interface CommandParser {
     public void leaves();
 
     public static boolean parseFight(List<String> command, Player player){
-        if(command.size() != 2){
+        if(command.size() == 2){
             if(player.fightAgainst == null){
                 return true;
             }

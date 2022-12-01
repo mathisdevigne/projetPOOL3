@@ -15,6 +15,7 @@ public enum MapID {
     DEPTH("Depth"),
     ENTRESOL("Entresol"),
     FACETOVER("Facetover"),
+    OFFICE("Office"),
     UNDERCITY("UnderCity");
     
     
@@ -22,5 +23,14 @@ public enum MapID {
     
     private MapID(String name){
         this.name = name;
+    }
+    
+    public static boolean contains(String test) {
+        for (MapID id : MapID.values()) {
+            if (id.name().equals(test)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

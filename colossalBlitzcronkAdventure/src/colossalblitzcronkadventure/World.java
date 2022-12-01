@@ -192,16 +192,7 @@ public class World implements CommandParser{
             item.printInter();
         }*/
     }
-        
-    public Location getLocation(String id){
-        for(Location l : this.LOCATIONS){
-            if(id.equals(l.getID().toString())){
-                return l;
-            }
-        }
-        return null;
-    }
-    
+           
     public void print(){
         System.out.println("================================================================");
         System.out.print("\t\t");
@@ -245,7 +236,7 @@ public class World implements CommandParser{
                     break;
                 case "LEAVES":
                     this.leaves();
-                    break;
+                    return false;
                 case "HELP":
                     CommandParser.help(commandSplit);
                     break;
@@ -267,12 +258,25 @@ public class World implements CommandParser{
         return false;
     }
     
+    public Location getLocation(String id){
+        if(this.currentLocation.isExit(id)){
+            for(Location l : this.LOCATIONS){
+                if(id.equals(l.getID().toString())){
+                    return l;
+                }
+            }
+        }
+        return null;
+    }
+    
     @Override
     public void go(List<String> command) {
         if(CommandParser.parseGo(command)){
-            Location goTo = this.getLocation(command.get(1));
-            if (goTo != null){
-                this.currentLocation = goTo;
+            if(this.currentLocation.isExit(command.get(1))){
+                MapID goTo = this.currentLocation.getExit(MapID.valueOf(command.get(1)));
+                if (goTo != null){
+                    this.currentLocation = this.getLocation(command.get(1));
+                }
             }
             else{
                 System.out.println("Wrong name for the exit");                  
@@ -332,8 +336,12 @@ public class World implements CommandParser{
     }
     
     public void printFight(Player p){
-        p.fightAgainst.print();
+        System.out.println("================================================================");
+        System.out.print("\t\t");
         p.print();
+        System.out.println("================================================================");
+        System.out.println();
+        p.fightAgainst.print();
         System.out.println("While fighting, you can uses thoses commannds :\nATTACK\nHEAL\nLEAVES");
     }
 
@@ -342,7 +350,7 @@ public class World implements CommandParser{
         Player currPlayer = Player.getPlayer();
         if(CommandParser.parseFight(command, currPlayer)){
             String enemyName = command.get(1);
-            Optional<Person> optp = currentLocation.getPERSONS().stream().filter((Person p) -> (p.getClass() == Enemy.class) && (p.getName().equals(enemyName))).findAny();
+            Optional<Person> optp = currentLocation.getPERSONS().stream().filter((Person p) -> (p.getClass() == Enemy.class) && (p.getName().toUpperCase().equals(enemyName))).findAny();
             if(optp.isPresent()){
                 currPlayer.fightAgainst = (Enemy)optp.get();
                 printFight(currPlayer);
