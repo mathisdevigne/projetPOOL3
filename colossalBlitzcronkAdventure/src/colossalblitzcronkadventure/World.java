@@ -36,6 +36,7 @@ public class World implements CommandParser{
     private static final World WORLD = new World();
     private final List<Location> LOCATIONS;
     private Location currentLocation;
+    private boolean end;
     
     private World(){
         this.LOCATIONS = new ArrayList<>();
@@ -192,13 +193,21 @@ public class World implements CommandParser{
             String desc = line[1];
             Location l = new Location(id, desc);
             boolean nextlocked = false;
-            for(String ex : line[0].split(" ")){ //Exits
+            String dest = "";
+            int j = 0;
+            for(String ex : line[0].split(" & ")){ //Exits 
                 if(ex.equals("LOCKED")){
                     nextlocked = true;
+                    j = 2;
                 }
                 else if(nextlocked){
-                    l.addExits(new LockedExit(id,MapID.valueOf(ex)));
-                    nextlocked = false;
+                    j--;
+                    if(j == 1){
+                        dest = ex;
+                    }else{
+                        l.addExits(new LockedExit(id,MapID.valueOf(dest), ex));
+                        nextlocked = false;
+                    }
                 }
                 else{
                     l.addExits(new Exit(id,MapID.valueOf(ex)));

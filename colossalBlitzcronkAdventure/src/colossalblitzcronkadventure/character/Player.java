@@ -58,7 +58,7 @@ public class Player extends FighterCharacter implements Talkable{
      * @param val Val to add to intelligence attribute
      */
     public void upIntelligence(int val){
-        this.intelligence =+ val;
+        this.intelligence += val;
         if(this.intelligence%2 == 0){
             this.modifStrength(1);
         }

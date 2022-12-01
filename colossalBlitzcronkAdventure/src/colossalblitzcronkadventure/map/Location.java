@@ -75,11 +75,6 @@ public class Location implements Lookable{
     }
     
     public void suppPerson(Person person){
-        /*for(Person p : this.PERSONS){
-            if(person.getName().equals(p.getName())){
-                 this.PERSONS.remove(person);
-            } 
-        }*/
         this.PERSONS.remove(person);
     }
     

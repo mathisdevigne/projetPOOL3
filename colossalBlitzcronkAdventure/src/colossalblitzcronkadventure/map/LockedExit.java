@@ -10,6 +10,7 @@ package colossalblitzcronkadventure.map;
  */
 public class LockedExit extends Exit {
     private boolean isLock = true;
+    private String message;
     
     /**
      * Constructor of the LockedExit class
@@ -17,8 +18,9 @@ public class LockedExit extends Exit {
      * @param origin the MapID of the origin
      * @param destination the MapID of the destination
      */
-    public LockedExit(MapID origin, MapID destination){
+    public LockedExit(MapID origin, MapID destination, String message){
         super(origin,destination);
+        this.message = message;
     }
     
     /**
@@ -48,6 +50,7 @@ public class LockedExit extends Exit {
         if(!this.isLock){
             return super.getDESTINATION();
         }
+        System.out.println(this.message);
         return null;
     }
 }
