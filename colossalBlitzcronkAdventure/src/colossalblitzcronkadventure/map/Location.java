@@ -152,7 +152,9 @@ public class Location implements Lookable{
         }
         if(!this.PERSONS.isEmpty())
         {
+            System.out.println("Characters : ");
             for(Person npc : this.PERSONS){
+                System.out.print(" - ");
                 npc.print();
             }
         }
@@ -202,7 +204,7 @@ public class Location implements Lookable{
         }
     }
     public Item take(String s) {
-        Optional<Item> item = this.ITEMS.stream()/*.filter(i -> Takeable.class.isAssignableFrom(i.getClass()))*/.filter(i -> i.getNAME().toUpperCase().equals(s)).findAny();
+        Optional<Item> item = this.ITEMS.stream().filter(i -> i.getNAME().toUpperCase().equals(s)).findAny();
         if(item.isPresent()){
            this.ITEMS.remove(item.get());
         }
