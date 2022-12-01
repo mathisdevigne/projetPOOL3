@@ -46,7 +46,7 @@ public class ItemTest {
         System.out.println("addPInterPers");
         Person p = null;
         Item instance = null;
-        instance.addPInterPers(p);
+        //instance.addPInterPers(p);
         instance.hasInterItem(null);
     }
 
