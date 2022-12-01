@@ -44,7 +44,7 @@ public class LockedExit extends Exit {
      * @return the MapID or null if the Exit is locked
      */
     @Override
-    public MapID getDESTINATION() {
+    public MapID cross() {
         if(!this.isLock){
             return super.getDESTINATION();
         }

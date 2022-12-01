@@ -6,7 +6,6 @@ package colossalblitzcronkadventure.map;
 
 import colossalblitzcronkadventure.character.Person;
 import colossalblitzcronkadventure.command.Lookable;
-import colossalblitzcronkadventure.command.Takeable;
 import colossalblitzcronkadventure.items.Item;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -109,7 +108,7 @@ public class Location implements Lookable{
      * @return the MapID of the destination
      */
     public MapID getExit(MapID id){
-        return this.EXITS.get(id).getDESTINATION();
+        return this.EXITS.get(id).cross();
     }
 
     /**
@@ -151,8 +150,11 @@ public class Location implements Lookable{
      * @param id the id of the destination
      * @return true if this is an exit
      */
-    public boolean isExit(MapID id){
-        return this.EXITS.containsKey(id);
+    public boolean isExit(String id){
+        if(MapID.contains(id)){
+            return this.EXITS.containsKey(MapID.valueOf(id));
+        }
+        return false;
     }
     
     public void printITEMS(){

@@ -4,6 +4,8 @@
  */
 package colossalblitzcronkadventure;
 
+import colossalblitzcronkadventure.character.Player;
+
 /**
  *
  * @author mathi
@@ -18,7 +20,16 @@ public class Game {
     public void play(){
         this.WORLD.print();
         while(!this.WORLD.scanParse()){
+            if(Player.getPlayer().fightAgainst != null){
+                this.fight();
+            }
             this.WORLD.print();
+        }
+    }
+    
+    public void fight(){
+        while(this.WORLD.scanParse()){
+            this.WORLD.printFight(Player.getPlayer());
         }
     }
 }

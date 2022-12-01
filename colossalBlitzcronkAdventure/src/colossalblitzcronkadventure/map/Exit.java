@@ -46,4 +46,8 @@ public class Exit {
     public boolean isOrigin(MapID id){
         return this.ORIGIN == id;
     }
+    
+    public MapID cross(){
+        return this.getDESTINATION();
+    }
 }
