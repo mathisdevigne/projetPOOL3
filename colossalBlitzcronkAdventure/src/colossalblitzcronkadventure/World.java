@@ -262,6 +262,10 @@ public class World implements CommandParser{
         return false;
     }
     
+    public Location getCurrentLocation(){
+        return this.currentLocation;
+    }
+    
     public Location getLocation(String id){
         if(this.currentLocation.isExit(id)){
             for(Location l : this.LOCATIONS){

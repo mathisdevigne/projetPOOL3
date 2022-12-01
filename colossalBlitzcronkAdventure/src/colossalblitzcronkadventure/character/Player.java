@@ -4,11 +4,13 @@
  */
 package colossalblitzcronkadventure.character;
 
+import colossalblitzcronkadventure.World;
 import colossalblitzcronkadventure.items.Consumable;
 import colossalblitzcronkadventure.items.Item;
 import colossalblitzcronkadventure.items.Weapon;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 /** Represent the Player
@@ -175,8 +177,6 @@ public class Player extends FighterCharacter implements Talkable{
                         remInventory(item);
                     } 
                 }
-                
-                
             }
             
         }
@@ -190,11 +190,13 @@ public class Player extends FighterCharacter implements Talkable{
     public void use(String obj1, String obj2){
         Item item1 = this.getItem(obj1);
         Item item2 = this.getItem(obj2);
-        if(item1 == null || item2 == null){
+        List<Person> listP = World.get().getCurrentLocation().getPERSONS();
+        Optional<Person> pers = listP.stream().filter(p -> p.getName().equalsIgnoreCase(obj2)).findAny();
+        if(item1 == null || (item2 == null && pers.isEmpty())){
             System.out.println("You don't have those objects.");
         }
         else{
-            if(item1.hasInter(obj2)){
+            if(item1.hasInterItem(obj2)){
                 System.out.print("Interaction possible, would you like to fuse ? (y/n) : ");
                 Scanner sc = new Scanner(System.in);
                 String res = sc.next();
@@ -205,6 +207,11 @@ public class Player extends FighterCharacter implements Talkable{
                     addInventory(fusedItem);
                 }
                 sc.close();
+            }
+            else if(item1.hasInterPers(pers.get())){
+                NPC pe = (NPC) pers.get();
+                remInventory(item1);
+                pe.changeTalk();
             }
         }
         

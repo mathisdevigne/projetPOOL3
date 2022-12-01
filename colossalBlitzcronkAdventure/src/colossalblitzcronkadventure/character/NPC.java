@@ -11,6 +11,7 @@ package colossalblitzcronkadventure.character;
 public class NPC extends Person implements Talkable{
     private String TALK1;
     private String TALK2;
+    private String actualTalk;
     
     
     /** Constructor of object NPC
@@ -19,6 +20,7 @@ public class NPC extends Person implements Talkable{
     public NPC(String NAME, String t1, String t2) {
         super(NAME);
         this.TALK1 = t1;
+        this.actualTalk = TALK1;
         this.TALK2 = t2;
     }
 
@@ -26,7 +28,7 @@ public class NPC extends Person implements Talkable{
      */
     @Override
     public void print() {
-        System.out.println(this.getName());
+        System.out.println(this.actualTalk);
     }
 
     /** Get the dialogues int the map from the ID
@@ -35,6 +37,10 @@ public class NPC extends Person implements Talkable{
     @Override
     public void talkId(int id) {
         System.out.println(NPC.DIALOGUES.get(id));
+    }
+    
+    public void changeTalk(){
+        this.actualTalk = this.TALK2;
     }
     
 }

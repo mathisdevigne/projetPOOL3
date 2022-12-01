@@ -4,7 +4,10 @@
  */
 package colossalblitzcronkadventure.items;
 
+import colossalblitzcronkadventure.character.Person;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /** Represent an Item
@@ -17,6 +20,7 @@ public abstract class Item {
     private final String DESCRIPTION;
     
     private Map<String, Item> interactions; 
+    private List<Person> interactionsNpc; 
     
     /** Constructor of object Item
      *
@@ -26,6 +30,7 @@ public abstract class Item {
     public Item(String name, String description){
         this.NAME = name;
         this.interactions = new HashMap<>();
+        this.interactionsNpc = new ArrayList<>();
         this.DESCRIPTION = description;
         
     }
@@ -60,8 +65,17 @@ public abstract class Item {
      * @param itemName Name of the Item's wanted interaction
      * @return Item obtain after the fusion
      */
-    public Item getInter(String itemName){
+    public Item getInterItem(String itemName){
         return interactions.get(itemName);
+    }
+    
+    /** Boolean to know if the Item has an Interaction
+     *
+     * @param pers Person to fuse with this Item
+     * @return Boolean : True if there is an Interaction, or false is there isn't
+     */
+    public boolean hasInterPers(Person pers){
+        return interactionsNpc.contains(pers);
     }
     
     /** Boolean to know if the Item has an Interaction
@@ -69,7 +83,7 @@ public abstract class Item {
      * @param item Item to fuse with this Item
      * @return Boolean : True if there is an Interaction, or false is there isn't
      */
-    public boolean hasInter(String item){
+    public boolean hasInterItem(String item){
         return interactions.containsKey(item);
     }
     
