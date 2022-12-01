@@ -59,6 +59,24 @@ public class World implements CommandParser{
             return;
         }
         String ftype = input.next();
+        
+        //Parse Persons :
+        while(input.hasNext() && ftype.equals("P")){
+            String type = input.next();
+            String name = input.next();
+            if(type.equals("E")){
+                int pv = input.nextInt();
+                int str = input.nextInt();
+                String lock = input.next();
+                persons.add(new Enemy(name, pv, str, MapID.valueOf(lock)));
+                input.nextLine();
+            }
+            else if(type.equals("N")){
+                String[] all = input.nextLine().replace("\\n", "\n").split("@");
+                persons.add(new NPC(name, all[0], all[1]));
+            }
+            ftype = input.next();
+        }
         //Parse Item :
         while(input.hasNext() && ftype.equals("I")){
             String type = input.next();
@@ -97,14 +115,18 @@ public class World implements CommandParser{
             Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
-        ftype = input.next();
+        do{
+            input.nextLine();
+            ftype = input.next();
+        }
+        while(!ftype.equals("I"));
         //ReParse Item for interaction :
         while(input.hasNext() && ftype.equals("I")){
             input.next();
             String itemName = input.next();
             input.findInLine("@");
             String s = input.next();
-            while(!s.equals("@")){
+            while(!s.equals("@")){ //Interaction item
                 Item fItem = null;
                 String fusingItem = s;
                 s = input.next();
@@ -122,25 +144,23 @@ public class World implements CommandParser{
                     }
                 }
             }
-            ftype = input.next();
-        }
-        //Parse Persons :
-        while(input.hasNext() && ftype.equals("P")){
-            String type = input.next();
-            String name = input.next();
-            if(type.equals("E")){
-                int pv = input.nextInt();
-                int str = input.nextInt();
-                String lock = input.next();
-                persons.add(new Enemy(name, pv, str, MapID.valueOf(lock)));
-                input.nextLine();
-            }
-            else if(type.equals("N")){
-                String[] all = input.nextLine().replace("\\n", "\n").split("@");
-                persons.add(new NPC(name, all[0], all[1]));
+            s = input.next();
+            while(!s.equals("@")){ //Interaction person
+                System.out.println(s);
+                String name = s;
+                Optional<Person> pers = persons.stream().filter(p -> p.getName().equalsIgnoreCase(name)).findAny();
+                if(pers.isPresent()){
+                    for(Item item : items){
+                        if(item.getNAME().equals(itemName)){
+                            item.hasInterPers(pers.get());
+                        }
+                    }
+                }
+                s = input.next();
             }
             ftype = input.next();
         }
+        
         //Parse Location :
         while(input.hasNext() && ftype.equals("L")){
             MapID id = MapID.valueOf(input.next());
