@@ -221,4 +221,9 @@ public class Player extends FighterCharacter implements Talkable{
     public void talkId(int id) {
         System.out.println(Player.DIALOGUES.get(id));
     }
+
+    @Override
+    public void talk() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

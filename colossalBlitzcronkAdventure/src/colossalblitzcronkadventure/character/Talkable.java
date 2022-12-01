@@ -15,6 +15,11 @@ public interface Talkable {
      * @param id
      *
      */
-    public abstract void talkId(int id);
+    public void talkId(int id);
+    
+    /**
+     * talk
+     */
+    public void talk();
     
 }

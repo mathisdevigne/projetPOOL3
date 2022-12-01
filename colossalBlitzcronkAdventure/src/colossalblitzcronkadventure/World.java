@@ -68,7 +68,12 @@ public class World implements CommandParser{
                 int pv = input.nextInt();
                 int str = input.nextInt();
                 String lock = input.next();
-                persons.add(new Enemy(name, pv, str, MapID.valueOf(lock)));
+                if(lock.equals("NULL")){
+                    persons.add(new Enemy(name, pv, str, null));
+                }
+                else{
+                    persons.add(new Enemy(name, pv, str, MapID.valueOf(lock)));
+                }
                 input.nextLine();
             }
             else if(type.equals("N")){
@@ -218,6 +223,7 @@ public class World implements CommandParser{
     
     @Override
     public boolean scanParse(){
+        System.out.print("> ");
         for(String command : new ArrayList<>(Arrays.asList(scan.nextLine().replaceAll("^ +| +$|( )+", "$1").toUpperCase().split(";")))){
             System.out.println("Commande : " +command +";");
             List<String> commandSplit = new ArrayList<>(Arrays.asList(command.split(" ")));
@@ -389,7 +395,15 @@ public class World implements CommandParser{
     public void heal() {
         Player p = Player.getPlayer();
         if(CommandParser.parseIsFighting(p)){
-            p.modifHealth(p.getStrength());
+            Item i = p.getItem("HEALTHPOTION");
+            if(i != null){
+                i.use();
+                p.remInventory(i);
+            }
+            else{
+                System.out.println("You don't have HealthPotion");
+            }
+                
         }
     }
 
@@ -408,7 +422,9 @@ public class World implements CommandParser{
             p.fightAgainst.takeDamage(p.getStrength());
             if(p.fightAgainst.getPv() < 1){
                 System.out.println("You defeated " + p.fightAgainst.getName());
-                ((LockedExit)this.currentLocation.getExit(p.fightAgainst.getLockedLocation())).unLock();
+                if(p.fightAgainst.getLockedLocation() != null){
+                    ((LockedExit)this.currentLocation.getExit(p.fightAgainst.getLockedLocation())).unLock();
+                } 
                 this.currentLocation.suppPerson(p.fightAgainst);
                 p.fightAgainst = null;
             }

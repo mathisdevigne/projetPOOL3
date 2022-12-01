@@ -28,7 +28,15 @@ public class NPC extends Person implements Talkable{
      */
     @Override
     public void print() {
-        System.out.println(this.actualTalk);
+        System.out.println(this.getName());
+    }
+    
+    /**
+     * Talk when look
+     */
+    @Override
+    public void look(){
+        this.talk();
     }
 
     /** Get the dialogues int the map from the ID
@@ -37,6 +45,11 @@ public class NPC extends Person implements Talkable{
     @Override
     public void talkId(int id) {
         System.out.println(NPC.DIALOGUES.get(id));
+    }
+    
+    @Override
+    public void talk(){
+        System.out.println(this.actualTalk);
     }
     
     public void changeTalk(){
