@@ -201,7 +201,7 @@ public class Player extends FighterCharacter implements Talkable{
                 Scanner sc = new Scanner(System.in);
                 String res = sc.next();
                 if("y".equals(res)){
-                    Item fusedItem = item1.getInter(obj2);
+                    Item fusedItem = item1.getInterItem(obj2);
                     remInventory(item1);
                     remInventory(item2);
                     addInventory(fusedItem);
