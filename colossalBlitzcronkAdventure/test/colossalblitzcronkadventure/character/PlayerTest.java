@@ -22,17 +22,6 @@ public class PlayerTest {
     }
 
     /**
-     * Test of getPlayer method, of class Player.
-     */
-    @Test
-    public void testGetPlayer() {
-        System.out.println("getPlayer");
-        Player expResult = p;
-        Player result = Player.getPlayer();
-        assertEquals(expResult, result);   
-    }
-
-    /**
      * Test of upIntelligence method, of class Player.
      */
     @Test
@@ -45,16 +34,6 @@ public class PlayerTest {
         
     }
 
-    /**
-     * Test of getIntelligence method, of class Player.
-     */
-    @Test
-    public void testGetIntelligence() {
-        System.out.println("getIntelligence");
-        Player instance = p;
-        assertEquals(5, instance.getIntelligence());
-        
-    }
     
     /**
      * Test of getName method, of abstract class Person.
@@ -63,38 +42,10 @@ public class PlayerTest {
     public void testName() {
         System.out.println("getName");
         Player instance = p;
-        assertEquals("Blitzcrong", instance.getName());
+        assertEquals("Blitzcronk", instance.getName());
     }
     
-    /**
-     * Test of getMAX_PV method, of abstract class FighterCharacter.
-     */
-    @Test
-    public void testGetMAX_PV() {
-        System.out.println("getMAX_PV");
-        Player instance = p;
-        assertEquals(20, instance.getMAX_PV());
-    }
     
-    /**
-     * Test of getPv method, of abstract class FighterCharacter.
-     */
-    @Test
-    public void testGetPv() {
-        System.out.println("getPv");
-        Player instance = p;
-        assertEquals(20, instance.getPv());
-    }
-    
-    /**
-     * Test of getMAX_PV method, of abstract class FighterCharacter.
-     */
-    @Test
-    public void testGetSTRENGTH(){
-        System.out.println("getSTRENGTH");
-        Player instance = p;
-        assertEquals(10, instance.getSTRENGTH());
-    }
     
     /**
      * Test of getMAX_PV method, of abstract class FighterCharacter.
@@ -105,5 +56,16 @@ public class PlayerTest {
         Player instance = p;
         instance.takeDamage(5);
         assertEquals(15, instance.getPv());
+    }
+    
+    /**
+     * Test of getMAX_PV method, of abstract class FighterCharacter.
+     */
+    @Test
+    public void testTakeTooMuchDamage() {
+        System.out.println("takeDamage");
+        Player instance = p;
+        instance.takeDamage(30);
+        assertEquals(0, instance.getPv());
     }
 }

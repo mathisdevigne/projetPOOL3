@@ -57,8 +57,10 @@ public class Location implements Lookable{
      * @param newExit the new exit to add int the list
      */
     public void addExits(LockedExit newExit){
-        if(newExit.isOrigin(this.ID)){
-            this.EXITS.put(newExit.getDESTINATION(), newExit);
+        if(newExit != null){
+            if(newExit.isOrigin(this.ID)){
+                this.EXITS.put(newExit.getDESTINATION(), newExit);
+            }
         }
     }
     
@@ -67,7 +69,9 @@ public class Location implements Lookable{
      * @param person the new person to add in the list
      */
     public void addPerson(Person person){
-        this.PERSONS.add(person);
+        if(person != null){
+            this.PERSONS.add(person);
+        }
     }
     
     public void suppPerson(Person person){
