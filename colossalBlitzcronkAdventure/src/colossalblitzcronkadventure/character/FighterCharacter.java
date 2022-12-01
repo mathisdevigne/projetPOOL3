@@ -55,7 +55,10 @@ public abstract class FighterCharacter extends Person {
      * @param val Val to add to health attribute
      */
     public void modifHealth(int val){
-        this.pv =+ val;
+        this.pv += val;
+        if(this.pv > this.MAX_PV){
+            this.pv = this.MAX_PV;
+        }
     }
     
     /** Method to modify the Strength attribute
