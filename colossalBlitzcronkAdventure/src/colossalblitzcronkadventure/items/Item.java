@@ -5,6 +5,7 @@
 package colossalblitzcronkadventure.items;
 
 import colossalblitzcronkadventure.character.Person;
+import colossalblitzcronkadventure.command.Lookable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.Map;
  *
  * @author theodusehu
  */
-public abstract class Item {
+public abstract class Item implements Lookable {
     
     private final String NAME;
     private final String DESCRIPTION;
@@ -106,5 +107,19 @@ public abstract class Item {
      * @param item Item to fuse with this Item
      */
     public abstract void use(Item item);
+    
+    /**
+     * Look every arguments if possible
+     * @param command 
+     */
+    public void look(List<String> command){
+        this.look();
+    }
+    /**
+     * Look everything
+     */
+    public void look(){
+        System.out.println(this.DESCRIPTION);
+    }
  
 }

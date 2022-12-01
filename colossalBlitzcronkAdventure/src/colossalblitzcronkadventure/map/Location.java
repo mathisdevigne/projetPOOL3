@@ -194,6 +194,7 @@ public class Location implements Lookable{
     public void look(List<String> command) {
         for(String s : command.subList(1, command.size())){
             this.PERSONS.stream().filter(p -> p.getName().toUpperCase().equals(s)).forEach(p -> p.look());
+            this.ITEMS.stream().filter(p -> p.getNAME().toUpperCase().equals(s)).forEach(p -> p.look());
         }
     }
     public Item take(String s) {
