@@ -24,7 +24,7 @@ public class Player extends FighterCharacter implements Talkable{
     public Enemy fightAgainst;
     private Item hand = null;    
     
-    private static final Player BLITZCRONK = new Player("Blitzcrong", 20, 0);
+    private static final Player BLITZCRONK = new Player("BlitzcronK", 20, 0);
 
     /** Constructor of object Player
      * @param NAME Name of the Player
