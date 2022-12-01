@@ -22,10 +22,10 @@ I M STRING null A thin String @ @ @
 I M SLIMEPIECE null A piece of a slime @ @ DR.MONDO PILTOVER DR.MYBACK NULL @
 I C HEALTHPOTION H 10 Healing potion @ @ @
 L DUMP @ LOCKED & SEWER & The exit is blocked by a big slime. @ You are in a dump. Everything is dirty and muddy. @ SLIME @ SWORD STICK STEELHAND HEALTHPOTION @
-L SEWER @ DUMP & LOCKED & DEPTH & There are some rats that block the way. & LOCKED & UNDERCITY & You can't go there @ You are in the sewer. Something stink in here... @ POUITCH @ STRING SLIMEPIECE HEALTHPOTION @
+L SEWER @ DUMP & LOCKED & DEPTH & There are some rats that block the way. & LOCKED & UNDERCITY & Hurgo : Who are you ? You can't pass. @ You are in the sewer. Something stink in here... @ POUITCH @ STRING SLIMEPIECE HEALTHPOTION @
 L DEPTH @ SEWER & FACTORY @ You are in what appear to be the depth of a city. @ VARVOCK ZOOGZ WORKER @ HEALTHPOTION @
 L FACTORY @ DEPTH & LOCKED & OFFICE & You can't enter the office, the door is locked @ You are in a factory. Wait, is that stike posters on the wall ? @ WORKER1 WORKER2 HENCHMAN @ @
 L OFFICE @ FACTORY @ You are in the office of MonkeyD. Why is there a monkey in an office ! @ MONKEYD @ HEALTHPOTION @
-L UNDERCITY @ DEPTH & LOCKED & PILTOVER & Hurgo : Who are you ? You can't pass. @ You are in the undercity. Whoa you can see some light, a rare sight in here. @ DR.MONDO DR.MYBAK HURGO VARVOCK ZUCK @ HEALTHPOTION @
+L UNDERCITY @ DEPTH & LOCKED & PILTOVER & Why going up when you haven't search this place ? @ You are in the undercity. Whoa you can see some light, a rare sight in here. @ DR.MONDO DR.MYBAK HURGO VARVOCK ZUCK @ HEALTHPOTION @
 L PILTOVER @ UNDERCITY @ You are in Piltover. Finally a real city, where everything doesn't stink or want to kill you.@ HEIMERDONGER DR.VOKTOR @ @
 .

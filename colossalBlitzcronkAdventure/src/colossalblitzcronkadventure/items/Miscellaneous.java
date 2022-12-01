@@ -32,9 +32,6 @@ public class Miscellaneous extends Item{
             System.out.println("You've obtain " + resItem.getNAME() +".");
             Player.getPlayer().remInventory(this);
         }
-        else{
-            System.out.println("Machin null");
-        }
     }
 
     @Override

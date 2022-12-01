@@ -24,7 +24,7 @@ public class LockedExitTest {
     public void setUp() {
         origin = MapID.DEPTH;
         dest = MapID.DUMP;
-        exit = new LockedExit(origin, dest);
+        //exit = new LockedExit(origin, dest);
         
     }
     
