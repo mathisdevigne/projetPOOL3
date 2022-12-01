@@ -264,8 +264,13 @@ public class World implements CommandParser{
                     System.out.println("Command " + commandSplit.get(0) + " not in the command list, type HELP if you need.");
                     break;
             }
+        if(Player.getPlayer().fightAgainst != null){
+            Player.getPlayer().takeDamage(Player.getPlayer().fightAgainst.getStrength());
+            System.out.println(Player.getPlayer().fightAgainst.getName() +" attacked, -"+Player.getPlayer().fightAgainst.getStrength()+"HP");
+        }
         return false;
     }
+    
     
     @Override
     public void go(List<String> command) {
