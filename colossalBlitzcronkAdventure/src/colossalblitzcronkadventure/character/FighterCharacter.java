@@ -4,6 +4,8 @@
  */
 package colossalblitzcronkadventure.character;
 
+import colossalblitzcronkadventure.World;
+
 /** Represent a FighterCharacter, is  inherited by Player and Ennemy
  *
  * @author theodusehu
