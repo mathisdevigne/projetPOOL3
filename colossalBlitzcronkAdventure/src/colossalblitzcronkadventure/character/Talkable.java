@@ -11,7 +11,7 @@ package colossalblitzcronkadventure.character;
 public interface Talkable {
         
     /**
-     * talk
+     * Used to Talk
      */
     public void talk();
     

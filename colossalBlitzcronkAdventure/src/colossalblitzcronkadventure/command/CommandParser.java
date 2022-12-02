@@ -8,7 +8,7 @@ import colossalblitzcronkadventure.character.Player;
 import java.util.List;
 import java.util.Scanner;
 
-/**
+/** Class for the Command Parser
  *
  * @author mathi
  */
@@ -16,16 +16,16 @@ public interface CommandParser {
     public static Scanner scan = new Scanner(System.in);
 
     /**
-     * 
-     * @param command
-     * @return return true if the command is conform
+     * Check if the command is valid
+     * @param command Command to check
+     * @return True if the command is conform
      */
     public static boolean parseQuit(List<String> command){
         return command.size() == 1;
     }
     
     /**
-     * Attack the unit fighting
+     * Attack the unit fighting with
      */
     public void attack();
     
@@ -40,9 +40,9 @@ public interface CommandParser {
     public void leaves();
 
     
-     /** 
-     * @param command
-     * @return return true if the command is conform
+     /** Check is the command is valid during a fight
+     * @param command Command to check
+     * @return True if the command is conform
      */
     public static boolean parseFight(List<String> command, Player player){
         if(command.size() == 2){
@@ -59,9 +59,9 @@ public interface CommandParser {
         return false;
     }
     
-    /** 
-     * @param player
-     * @return return true if the player is fighting
+    /** Check if the player is fighting
+     * @param player The Player
+     * @return True if the player is fighting
      */        
     public static boolean parseIsFighting(Player player){
         if(player.fightAgainst != null){
@@ -75,25 +75,25 @@ public interface CommandParser {
     
     /**
      * Use the static scanner to parse a command
-     * @return true if we quit the game, if not false
+     * @return True if we quit the game, if not false
      */
     public boolean scanParse();
 
     /**
-     * go to the location if possible
-     * @param command 
+     * Go to the location if possible
+     * @param command
      */
     public void go(List<String> command);
     
     /**
-     * fight the unit specified
+     * Fight the unit specified
      * @param command 
      */
     public void fight(List<String> command);
     
-    /** 
+    /** Check is the command is valid
      * @param command
-     * @return return true if the command is conform
+     * @return True if the command is conform
      */
     public static boolean parseGo(List<String> command){
         return command.size() == 2;      
@@ -111,14 +111,31 @@ public interface CommandParser {
 
      
     public void lookAt(List<String> command);
-
     
+    /**
+     * Allow to quit the game
+     * @param command
+     * @return True if sucess, false if not
+     */
     public boolean quit(List<String> command);
 
+    /**
+     * Command to Use an Item
+     * @param command 
+     */
     public void use(List<String> command);
 
+    /**
+     * Command to Take an Item
+     * @param command 
+     */
     public void take(List<String> command);
     
+    /**
+     * ParseTake
+     * @param command
+     * @return True if the command is valid
+     */
     public static boolean parseTake(List<String> command){
         return command.size() == 2;      
     }

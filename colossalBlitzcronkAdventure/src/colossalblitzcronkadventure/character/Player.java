@@ -190,10 +190,10 @@ public class Player extends FighterCharacter implements Talkable{
         }
     }
     
-    /** Use command to fuse objects
+    /** Use command to fuse objects or use an objet on an NPC
      * 
-     * @param obj1 First object, base for fusion
-     * @param obj2 Second object, use to know if fusion is possible
+     * @param obj1 First object, base for fusion or give
+     * @param obj2 Second object, use to know if fusion is possible or is used on an NPC
      */
     public void use(String obj1, String obj2){
         Item item1 = this.getItem(obj1);

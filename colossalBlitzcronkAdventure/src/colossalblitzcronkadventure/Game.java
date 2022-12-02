@@ -6,17 +6,23 @@ package colossalblitzcronkadventure;
 
 import colossalblitzcronkadventure.character.Player;
 
-/**
+/** Class to play the Game
  *
  * @author mathi
  */
 public class Game {
     private final World WORLD;
     
+    /**
+     * Get the world
+     */
     public Game(){
         this.WORLD = World.get();
     }
     
+    /**
+     * Play one round
+     */
     public void play(){
         this.WORLD.print();
         while(!this.WORLD.scanParse()){
@@ -31,6 +37,9 @@ public class Game {
         this.finish();
     }
     
+    /**
+     * Begin a fight
+     */
     private void fight(){
         while(Player.getPlayer().fightAgainst != null && !this.WORLD.scanParse()){
             if(Player.getPlayer().fightAgainst != null){

@@ -47,6 +47,10 @@ public class Exit {
         return this.ORIGIN == id;
     }
     
+    /**
+     * Allow to cross to another Location
+     * @return MapID of the destination
+     */
     public MapID cross(){
         return this.getDESTINATION();
     }

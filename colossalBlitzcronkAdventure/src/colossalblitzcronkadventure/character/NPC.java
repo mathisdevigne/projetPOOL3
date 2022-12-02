@@ -49,6 +49,9 @@ public class NPC extends Person implements Talkable{
         System.out.println(this.actualTalk);
     }
     
+    /**
+     * Used to change the active dialogue of this NPC
+     */
     public void changeTalk(){
         int next = this.TALKS.indexOf(this.actualTalk)+1;
         if(next < this.TALKS.size()){

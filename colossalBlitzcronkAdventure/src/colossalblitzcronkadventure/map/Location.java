@@ -171,6 +171,9 @@ public class Location implements Lookable{
         return false;
     }
     
+    /**
+     * Print every Items
+     */
     public void printITEMS(){
         System.out.println("Items :");
         for(Item i : this.ITEMS){
@@ -198,6 +201,12 @@ public class Location implements Lookable{
             this.ITEMS.stream().filter(p -> p.getNAME().toUpperCase().equals(s)).forEach(p -> p.look());
         }
     }
+    
+    /**
+     * Take an Item from is name
+     * @param s
+     * @return The taken Item
+     */
     public Item take(String s) {
         Optional<Item> item = this.ITEMS.stream().filter(i -> i.getNAME().toUpperCase().equals(s)).findAny();
         if(item.isPresent()){

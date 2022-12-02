@@ -46,6 +46,9 @@ public class Enemy extends FighterCharacter implements Talkable{
         System.out.println(this.getName() + ": " + this.getPv() + "/" + this.getMAX_PV());
     }
     
+    /**
+     * Used to change the active dialogue of this Enemy
+     */
     public void changeTalk(){
         int next = this.TALKS.indexOf(this.actualTalk)+1;
         if(next < this.TALKS.size()){
