@@ -519,10 +519,7 @@ public class World implements CommandParser{
     @Override
     public void attack() {
         Player p = Player.getPlayer();
-        if(p.getPv() == 0){
-            System.out.println("You are dead !");
-            this.end = true;
-        }
+        
         if(CommandParser.parseIsFighting(p)){
             p.fightAgainst.takeDamage(p.getStrength());
             if(p.fightAgainst.getPv() < 1){
