@@ -7,7 +7,6 @@ package colossalblitzcronkadventure.items;
 import colossalblitzcronkadventure.character.Person;
 import colossalblitzcronkadventure.command.Lookable;
 import colossalblitzcronkadventure.map.MapID;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,9 +45,10 @@ public abstract class Item implements Lookable {
         this.interactions.put(fusingItem, fusedItem);
     }
     
-    /** Add an Interaction between two object in this Item
+    /** Add an Interaction between an objet and a person in this Item
      *
      * @param p add this person
+     * @param id id for the map
      */
     public void addPInterPers(Person p, MapID id){
         if(p != null){
