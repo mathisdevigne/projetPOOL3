@@ -7,6 +7,7 @@ package colossalblitzcronkadventure.character;
 import colossalblitzcronkadventure.World;
 import colossalblitzcronkadventure.items.Consumable;
 import colossalblitzcronkadventure.items.Item;
+import colossalblitzcronkadventure.items.Miscellaneous;
 import colossalblitzcronkadventure.items.Weapon;
 import colossalblitzcronkadventure.map.Location;
 import colossalblitzcronkadventure.map.LockedExit;
@@ -173,7 +174,9 @@ public class Player extends FighterCharacter implements Talkable{
                     }
                 }
                 else{
-                    item.use();
+                    if(item instanceof Miscellaneous){
+                        item.use();
+                    }
                     if(item instanceof Weapon){
                          System.out.println("You can't equip the weapon, first desequip the one you have.");
                     }
