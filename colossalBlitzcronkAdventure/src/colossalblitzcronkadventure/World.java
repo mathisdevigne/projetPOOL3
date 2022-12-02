@@ -28,7 +28,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/** Represent the World we play in
  *
  * @author mathi
  */
@@ -57,7 +57,7 @@ public class World implements CommandParser{
     }
     
     /**
-     * Init the world, with location itme and persons.
+     * Init the world, with location, items and persons.
      */
     private void init(){
         File file = new File(System.getProperty("user.dir") + "/src/colossalBlitzcronkAdventure/init.txt");
@@ -510,7 +510,6 @@ public class World implements CommandParser{
     @Override
     public void attack() {
         Player p = Player.getPlayer();
-        
         if(CommandParser.parseIsFighting(p)){
             p.fightAgainst.takeDamage(p.getStrength());
             if(p.fightAgainst.getPv() < 1){

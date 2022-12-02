@@ -6,7 +6,7 @@ package colossalblitzcronkadventure.command;
 
 import java.util.List;
 
-/**
+/** Interface Lookable, allow to look something
  *
  * @author mathi
  */
