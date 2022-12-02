@@ -262,17 +262,14 @@ public class World implements CommandParser{
             if(" ".equals(commandSplit.get(0))){
                 commandSplit.remove(0);
             }
-            boolean stop = parse(commandSplit);
-            if(stop){
-                return true;
-            }
+            parse(commandSplit);
         }
-        return false;
+        return this.end;
         
     }       
         
         
-    public boolean parse(List<String> commandSplit){
+    public void parse(List<String> commandSplit){
         switch (commandSplit.get(0)) {
                 case "GO":
                     this.go(commandSplit);
@@ -288,7 +285,7 @@ public class World implements CommandParser{
                     break;
                 case "LEAVES":
                     this.leaves();
-                    return true;
+                    break;
                 case "HELP":
                     CommandParser.help(commandSplit);
                     break;
@@ -296,7 +293,7 @@ public class World implements CommandParser{
                     this.lookAt(commandSplit);
                     break;
                 case "QUIT":
-                    return this.quit(commandSplit);
+                    this.quit(commandSplit);
                 case "TAKE":
                     this.take(commandSplit);
                     break;
@@ -307,7 +304,6 @@ public class World implements CommandParser{
                     System.out.println("Command " + commandSplit.get(0) + " not in the command list, type HELP if you need.");
                     break;
             }        
-        return false;
     }
 
     public List<Location> getLOCATIONS() {
@@ -365,13 +361,12 @@ public class World implements CommandParser{
     }
 
     @Override
-    public boolean quit(List<String> command) {
+    public void quit(List<String> command) {
         if(CommandParser.parseQuit(command)){
-            return true;
+            this.setEnd();
         }
         else{
             System.out.println("Wrong number of arguments for quit");
-            return false;
         }
     }
 

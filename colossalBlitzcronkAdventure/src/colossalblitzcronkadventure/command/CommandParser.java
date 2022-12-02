@@ -115,9 +115,8 @@ public interface CommandParser {
     /**
      * Allow to quit the game
      * @param command
-     * @return True if sucess, false if not
      */
-    public boolean quit(List<String> command);
+    public void quit(List<String> command);
 
     /**
      * Command to Use an Item

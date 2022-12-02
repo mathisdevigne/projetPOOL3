@@ -35,7 +35,8 @@ public class WorldTest {
         System.out.println("parse");
         List<String> commandSplit = new ArrayList<>();
         commandSplit.add("QUIT");
-        assertTrue(w.parse(commandSplit));
+        w.parse(commandSplit);
+        assertTrue(w.isEnd());
     }
 
     /**
@@ -46,7 +47,8 @@ public class WorldTest {
         System.out.println("parse");
         List<String> commandSplit = new ArrayList<>();
         commandSplit.add("Ahshad");
-        assertFalse(w.parse(commandSplit));
+        w.parse(commandSplit);
+        assertFalse(w.isEnd());
     }
 
 

@@ -38,6 +38,14 @@ public class Player extends FighterCharacter implements Talkable{
         this.fightAgainst = null;
         this.intelligence = DEF_INT;
     }
+    
+    /**
+     * 
+     * @return true if is alive
+     */
+    public static boolean isAlive(){
+        return BLITZCRONK.getPv() > 0;
+    }
 
     /** Getter of object Player
      * 
@@ -145,6 +153,24 @@ public class Player extends FighterCharacter implements Talkable{
             
         }
         System.out.println();
+    }
+    
+    
+    /** Can reduce PV by given value
+     * 
+     * @param damage Val to substract to pv
+     */
+    @Override
+    public void takeDamage(int damage){
+        super.takeDamage(damage);
+        if(super.getPv() == 0){
+            World.get().setEnd();
+            this.printEndDie();
+        }
+    }
+    
+    public void printEndDie(){
+        System.out.println("Blitzcronk sadly died...");
     }
 
     /** Global use command
