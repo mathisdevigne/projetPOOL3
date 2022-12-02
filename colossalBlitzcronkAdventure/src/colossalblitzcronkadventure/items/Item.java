@@ -20,8 +20,8 @@ public abstract class Item implements Lookable {
     private final String NAME;
     private final String DESCRIPTION;
     
-    private Map<String, Item> interactions; 
-    private Map<Person, MapID> interactionsNpc; 
+    private final Map<String, Item> INTERACTIONS; 
+    private final Map<Person, MapID> INTERACTIONSNPC; 
     
     /** Constructor of object Item
      *
@@ -30,8 +30,8 @@ public abstract class Item implements Lookable {
      */
     public Item(String name, String description){
         this.NAME = name;
-        this.interactions = new HashMap<>();
-        this.interactionsNpc = new HashMap<>();
+        this.INTERACTIONS = new HashMap<>();
+        this.INTERACTIONSNPC = new HashMap<>();
         this.DESCRIPTION = description;
         
     }
@@ -42,7 +42,7 @@ public abstract class Item implements Lookable {
      * @param fusedItem Item obtain after the fusion
      */
     public void addInter(String fusingItem, Item fusedItem){
-        this.interactions.put(fusingItem, fusedItem);
+        this.INTERACTIONS.put(fusingItem, fusedItem);
     }
     
     /** Add an Interaction between an objet and a person in this Item
@@ -52,7 +52,7 @@ public abstract class Item implements Lookable {
      */
     public void addPInterPers(Person p, MapID id){
         if(p != null){
-            this.interactionsNpc.put(p, id);
+            this.INTERACTIONSNPC.put(p, id);
         }
     }
 
@@ -71,9 +71,13 @@ public abstract class Item implements Lookable {
     public String getDes(){
         return this.DESCRIPTION;
     }
-    
+    /**
+     * Retrurn the MapID that correspond to the Person
+     * @param pers the person
+     * @return the MapID of the interaction
+     */
     public MapID getInterPers(Person pers){
-        return this.interactionsNpc.get(pers);
+        return this.INTERACTIONSNPC.get(pers);
     }
     
     /** Getter of the Interaction of this Item
@@ -82,7 +86,7 @@ public abstract class Item implements Lookable {
      * @return Item obtain after the fusion
      */
     public Item getInterItem(String itemName){
-        return interactions.get(itemName);
+        return INTERACTIONS.get(itemName);
     }
     
     /** Boolean to know if the Item has an Interaction
@@ -91,7 +95,7 @@ public abstract class Item implements Lookable {
      * @return Boolean : True if there is an Interaction, or false is there isn't
      */
     public boolean hasInterPers(Person pers){
-        return interactionsNpc.containsKey(pers);
+        return INTERACTIONSNPC.containsKey(pers);
     }
     
     /** Boolean to know if the Item has an Interaction
@@ -100,7 +104,7 @@ public abstract class Item implements Lookable {
      * @return Boolean : True if there is an Interaction, or false is there isn't
      */
     public boolean hasInterItem(String item){
-        return interactions.containsKey(item);
+        return INTERACTIONS.containsKey(item);
     }
     
     /** Print Interactions of each Items
@@ -108,10 +112,10 @@ public abstract class Item implements Lookable {
      */
     public void printInter(){
         System.out.println("INTERACTIONS : ");
-        for(Map.Entry<String, Item> test : this.interactions.entrySet()){
+        for(Map.Entry<String, Item> test : this.INTERACTIONS.entrySet()){
             System.out.println(this.getNAME() + " + " + test.getKey() + " -> " + test.getValue().getNAME());
         } 
-        for(Person p : this.interactionsNpc.keySet()){
+        for(Person p : this.INTERACTIONSNPC.keySet()){
             p.print();
         }
     }
@@ -131,12 +135,14 @@ public abstract class Item implements Lookable {
      * Look every arguments if possible
      * @param command 
      */
+    @Override
     public void look(List<String> command){
         this.look();
     }
     /**
      * Look everything
      */
+    @Override
     public void look(){
         System.out.println(this.DESCRIPTION);
     }

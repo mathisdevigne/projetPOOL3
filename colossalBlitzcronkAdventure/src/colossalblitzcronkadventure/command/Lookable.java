@@ -14,7 +14,7 @@ public interface Lookable {
     
     /**
      * Look every arguments if possible
-     * @param command 
+     * @param command the list of command with arguments
      */
     public void look(List<String> command);
     /**

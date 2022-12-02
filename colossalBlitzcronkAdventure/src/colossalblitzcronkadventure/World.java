@@ -38,6 +38,9 @@ public class World implements CommandParser{
     private Location currentLocation;
     private boolean end;
     
+    /**
+     * Constructor of the World class
+     */
     private World(){
         this.LOCATIONS = new ArrayList<>();
         this.init();
@@ -46,7 +49,7 @@ public class World implements CommandParser{
     }
     
     /**
-     * 
+     * Getter of the singleton WORLD
      * @return the singleton WORLD
      */
     public static World get(){
@@ -232,19 +235,11 @@ public class World implements CommandParser{
         
             ftype = input.next();
         }
-        
-                
-        
-        
         input.close();
-        /*for(Item item : items){
-            System.out.println(item.getNAME() + " : " + item.getDes() + " ");
-            item.printInter();
-        }*/
     }
 
     /**
-     * if the game is ending
+     * Verify if the game is ending
      * @return true if yes, false if not
      */
     public boolean isEnd() {
@@ -292,6 +287,7 @@ public class World implements CommandParser{
         
     /**
      * Parse command and call methods
+     * @param commandSplit a list with the command and arguments
      */
     public void parse(List<String> commandSplit){
         switch (commandSplit.get(0)) {
@@ -307,8 +303,8 @@ public class World implements CommandParser{
                 case "HEAL":
                     this.heal();
                     break;
-                case "LEAVES":
-                    this.leaves();
+                case "LEAVE":
+                    this.leave();
                     break;
                 case "HELP":
                     CommandParser.help(commandSplit);
@@ -331,7 +327,7 @@ public class World implements CommandParser{
     }
 
     /**
-     * 
+     * Getter of the list of Locations of the World
      * @return All the locations the world knows
      */
     public List<Location> getLOCATIONS() {
@@ -339,7 +335,7 @@ public class World implements CommandParser{
     }
      
     /**
-     * 
+     * Getter of the currentLocation of the World
      * @return current location
      */
     public Location getCurrentLocation(){
@@ -363,7 +359,7 @@ public class World implements CommandParser{
     }
     
     /**
-     * move our current location to another
+     * Move our current location to another
      * @param command list of string who make a command
      */
     @Override
@@ -384,11 +380,6 @@ public class World implements CommandParser{
         }
     }
 
-    
-    /**
-     * Look at something
-     * @param command list of string that make a command
-     */
     @Override
     public void lookAt(List<String> command) {
         if(command.size() == 2){
@@ -453,7 +444,7 @@ public class World implements CommandParser{
     
     /**
      * Print the player's fight
-     * @param p 
+     * @param p the player
      */
     public void printFight(Player p){
         System.out.println("================================================================");
@@ -462,7 +453,7 @@ public class World implements CommandParser{
         System.out.println("================================================================");
         System.out.println();
         p.fightAgainst.print();
-        System.out.println("While fighting, you can uses thoses commands :\n - ATTACK\n - HEAL\n - LEAVES");
+        System.out.println("While fighting, you can uses thoses commands :\n - ATTACK\n - HEAL\n - LEAVE");
     }
 
     /**
@@ -484,7 +475,7 @@ public class World implements CommandParser{
     }
 
     /**
-     * Heal the player if possible (while ine fight)
+     * Heal the player if possible (while in fight)
      */
     @Override
     public void heal() {
@@ -506,7 +497,7 @@ public class World implements CommandParser{
      * Leave a fight (while in fight)
      */
     @Override
-    public void leaves() {
+    public void leave() {
         Player p = Player.getPlayer();
         if(CommandParser.parseIsFighting(p)){
             p.fightAgainst = null;

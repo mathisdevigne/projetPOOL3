@@ -37,11 +37,12 @@ public interface CommandParser {
     /**
      * Leaves a fight
      */
-    public void leaves();
+    public void leave();
 
     
      /** Check is the command is valid during a fight
      * @param command Command to check
+     * @param player the player that is fighting
      * @return True if the command is conform
      */
     public static boolean parseFight(List<String> command, Player player){
@@ -109,7 +110,10 @@ public interface CommandParser {
         }
     }
 
-     
+    /**
+     * Look at something
+     * @param command list of string that make a command
+     */ 
     public void lookAt(List<String> command);
     
     /**

@@ -27,7 +27,7 @@ public enum MapID {
     }
     
     /**
-     *  
+     * Verify if a String is contained in the Enum
      * @param test string to test
      * @return true if test is one of the values of the enum, else false
      */

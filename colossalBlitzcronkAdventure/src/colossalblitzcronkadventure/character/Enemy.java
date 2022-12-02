@@ -24,14 +24,16 @@ public class Enemy extends FighterCharacter implements Talkable{
      * @param MAX_PV Maximum number of PV
      * @param STRENGTH Strength (Attack) of the Ennemy
      * @param ID ID of the Location that is unlock when defeated 
+     * @param startBattle The dialogue when the fight begin
+     * @param endBattle The dialogue of the end of fight
      */
-    public Enemy(String NAME, int MAX_PV, int STRENGTH, MapID ID, String t1, String t2) {
+    public Enemy(String NAME, int MAX_PV, int STRENGTH, MapID ID, String startBattle, String endBattle) {
         super(NAME, MAX_PV, STRENGTH);
         this.LOCKEDLOCATION = ID;
         this.TALKS = new ArrayList<>();
-        this.TALKS.add(t1);
-        this.TALKS.add(t2);
-        this.actualTalk = t1;
+        this.TALKS.add(startBattle);
+        this.TALKS.add(endBattle);
+        this.actualTalk = startBattle;
     }
     /** 
      * Return the MapID of the Location that is locked by it

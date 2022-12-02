@@ -73,7 +73,10 @@ public class Location implements Lookable{
             this.PERSONS.add(person);
         }
     }
-    
+    /**
+     * Remove a Person in the list of the Location
+     * @param person the Person to remove
+     */
     public void suppPerson(Person person){
         this.PERSONS.remove(person);
     }
@@ -119,6 +122,11 @@ public class Location implements Lookable{
         return this.EXITS.get(id).cross();
     }
     
+    /**
+     * Return the Exit that has the id as origin
+     * @param id the MapID of the origin of the Exit
+     * @return The Exit that has the id as origin
+     */
     public Exit getExit(MapID id){
         return this.EXITS.get(id);
     }
@@ -172,7 +180,7 @@ public class Location implements Lookable{
     }
     
     /**
-     * Print every Items
+     * Print every Items of the Location
      */
     public void printITEMS(){
         System.out.println("Items :");
@@ -204,11 +212,11 @@ public class Location implements Lookable{
     
     /**
      * Take an Item from is name
-     * @param s
+     * @param name the name of the Item
      * @return The taken Item
      */
-    public Item take(String s) {
-        Optional<Item> item = this.ITEMS.stream().filter(i -> i.getNAME().toUpperCase().equals(s)).findAny();
+    public Item take(String name) {
+        Optional<Item> item = this.ITEMS.stream().filter(i -> i.getNAME().toUpperCase().equals(name)).findAny();
         if(item.isPresent()){
            this.ITEMS.remove(item.get());
         }

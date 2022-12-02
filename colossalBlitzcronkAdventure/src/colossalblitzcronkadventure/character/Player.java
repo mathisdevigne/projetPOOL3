@@ -40,7 +40,7 @@ public class Player extends FighterCharacter implements Talkable{
     }
     
     /**
-     * 
+     * Verify if the player is alive
      * @return true if is alive
      */
     public static boolean isAlive(){
@@ -169,6 +169,9 @@ public class Player extends FighterCharacter implements Talkable{
         }
     }
     
+    /**
+     * Print a message when the player die
+     */
     public void printEndDie(){
         System.out.println("Blitzcronk sadly died...");
     }
