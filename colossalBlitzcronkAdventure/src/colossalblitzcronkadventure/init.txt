@@ -14,10 +14,10 @@ P N Hurgo Hurgo : Oh you are with Varvock this time? Sorry for last time buddy, 
 P N Zuck Zuck : Hi, how are you today?\nBlitzcronk : Fine and you\nZuck : I'm zuckin' as always! @Zuck : You need some slime ? There you are!\nBlitzcronk : Thanks *beep*\n you @
 P N Heimerdonger Heimerdonger : Hi, I can repair you if you want.\nBlitzcronk : Ok yes please.\nHeimerdonger : Wait you don't have money do you ?/nBlitzcronk : *babep* @Heimerdonger : *dong* *dong* @
 I W SWORD 0 A rusty sword @ @ @
-I W STICK 0 Just a stick, what did you expect ? @ STRING FISHINGRODE @ @
+I W STICK 0 Just a stick, what did you expect ? @ STRING FISHINGROD @ @
 I W STEELHAND 10 The missing hand of Blitz @ @ @
 I M FISH null A fish @ @ Pouitch DEPTH @
-I M FISHINGRODE FISH A simple FishingRode @ @ @
+I M FISHINGROD FISH A simple FishingRod @ @ @
 I M STRING null A thin String @ @ @
 I M SLIMEPIECE null A piece of a slime @ @ DR.MONDO PILTOVER DR.MYBAK NULL @
 I M BANANA null The Banana of MonkeyD @ @ VARVOCK UNDERCITY @
