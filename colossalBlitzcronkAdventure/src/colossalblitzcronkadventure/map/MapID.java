@@ -26,6 +26,11 @@ public enum MapID {
         this.name = name;
     }
     
+    /**
+     *  
+     * @param test string to test
+     * @return true if test is one of the values of the enum, else false
+     */
     public static boolean contains(String test) {
         for (MapID id : MapID.values()) {
             if (id.name().equals(test)) {
