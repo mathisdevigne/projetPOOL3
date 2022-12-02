@@ -395,7 +395,7 @@ public class World implements CommandParser{
                 Player.getPlayer().addInventory(item);
             }
             else{
-                System.out.println("Thers is nothing like this here");
+                System.out.println("There is nothing like this here");
             }
         }
     }
