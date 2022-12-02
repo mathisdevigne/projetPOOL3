@@ -1,6 +1,0 @@
-DUMP You are in the Dump @ FACTORY @
-FACTORY You are in the Factory @ DUMP SEWER @
-SEWER You are in the Sewer @ DEPTH DUMP @
-DEPTH You are in the Depth @ ENTRESOL @
-ENTRESOL You are in Entresol @ FACETOVER DEPTH @
-FACETOVER You are in Facetover @ ENTRESOL @

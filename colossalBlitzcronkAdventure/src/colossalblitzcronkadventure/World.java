@@ -60,7 +60,7 @@ public class World implements CommandParser{
      * Init the world, with location, items and persons.
      */
     private void init(){
-        File file = new File(System.getProperty("user.dir") + "/src/colossalBlitzcronkAdventure/init.txt");
+        File file = new File(System.getProperty("user.dir") + "/init.txt");
         Scanner input;
         List<Item> items = new ArrayList<>();
         List<Person> persons = new ArrayList<>();
